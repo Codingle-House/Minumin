@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import id.co.minumin.data.dto.LanguageDto
+import id.co.minumin.data.dto.LanguageDto.INDONESIA
 import id.co.minumin.util.LocaleHelper.LanguageCode.ENGLISH
 import id.co.minumin.util.LocaleHelper.LanguageCode.INDONESIA
 import java.util.*

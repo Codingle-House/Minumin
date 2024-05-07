@@ -12,7 +12,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tbl_backup")
 data class BackupUserSettingEntity(
     @PrimaryKey(autoGenerate = false)
-    @NonNull
     @ColumnInfo(name = "id")
     var id: Long = 0,
     @ColumnInfo(name = "gender")

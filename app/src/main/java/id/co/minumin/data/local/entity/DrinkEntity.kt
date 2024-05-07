@@ -13,7 +13,6 @@ import java.util.*
 @Entity(tableName = "tbl_drink")
 data class DrinkEntity(
     @PrimaryKey(autoGenerate = false)
-    @NonNull
     @ColumnInfo(name = "id")
     var id: Long = 0,
     @ColumnInfo(name = "consumption")

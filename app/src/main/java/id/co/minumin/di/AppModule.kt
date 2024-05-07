@@ -15,9 +15,6 @@ import id.co.minumin.domain.datasource.LocalDataSource
 import id.co.minumin.domain.repository.AppRepository
 import id.co.minumin.notifications.helper.AlarmHelper
 import id.co.minumin.notifications.helper.NotificationHelper
-import id.co.minumin.notifications.receivers.BootReceiver
-import id.co.minumin.notifications.receivers.NotifierReceiver
-import id.co.minumin.util.FirebaseDatabaseUtil
 import id.co.minumin.util.LocaleHelper
 import javax.inject.Singleton
 
@@ -71,10 +68,6 @@ object AppModule {
         @ApplicationContext appContext: Context,
         userPreferenceManager: UserPreferenceManager
     ) = NotificationHelper(appContext, userPreferenceManager)
-
-    @Singleton
-    @Provides
-    fun providesFirebaseDatabaseUtil() = FirebaseDatabaseUtil
 
     @Singleton
     @Provides

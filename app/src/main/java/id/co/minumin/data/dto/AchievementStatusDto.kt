@@ -5,7 +5,7 @@ package id.co.minumin.data.dto
  */
 
 sealed class AchievementStatusDto {
-    object None : AchievementStatusDto()
-    object Done : AchievementStatusDto()
-    object Fail : AchievementStatusDto()
+    data object None : AchievementStatusDto()
+    data object Done : AchievementStatusDto()
+    data object Fail : AchievementStatusDto()
 }

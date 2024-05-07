@@ -19,11 +19,9 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
             throw IllegalStateException("Multiple observers on event")
         }
 
-        super.observe(owner, Observer {
-            if (pending.compareAndSet(true, false)) {
-                observer.onChanged(it)
-            }
-        })
+        super.observe(owner) {
+            if (pending.compareAndSet(true, false)) observer.onChanged(it)
+        }
     }
 
     @MainThread

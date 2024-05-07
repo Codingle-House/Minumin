@@ -1,16 +1,17 @@
 package id.co.minumin.base
 
 import android.os.Build
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 import android.view.ViewGroup
-import android.view.WindowInsetsController
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import id.co.minumin.core.ext.getColorCompat
 
@@ -48,14 +49,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         observe(this@BaseFragment) { data -> data?.let(action) }
     }
 
-    protected fun changeStatusBarColor(@ColorRes color: Int) {
-        activity?.getColorCompat(color)?.let {
-            activity?.window?.statusBarColor = it
-        }
-    }
+    protected fun changeStatusBarColor(@ColorRes color: Int) =
+        activity?.getColorCompat(color)?.let { activity?.window?.statusBarColor = it }
 
     protected fun changeStatusBarTextColor(isLightStatusBar: Boolean = false) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
             when {
                 isLightStatusBar -> {
                     activity?.window?.insetsController?.setSystemBarsAppearance(
@@ -71,20 +69,15 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
                     )
                 }
             }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        } else if (SDK_INT >= M) {
             when {
-                isLightStatusBar -> {
-                    activity?.window?.decorView?.systemUiVisibility =
-                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
-                }
+                isLightStatusBar -> activity?.window?.decorView?.systemUiVisibility =
+                    SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
                 else -> {
                     val decorView = activity?.window?.decorView
-                    decorView?.systemUiVisibility?.and(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
-                        ?.let {
-                            decorView.systemUiVisibility = it
-                        }
+                    decorView?.systemUiVisibility?.and(SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
+                        ?.let { decorView.systemUiVisibility = it }
                 }
             }
         }

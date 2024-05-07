@@ -19,9 +19,7 @@ class LocalDataSource @Inject constructor(private val appDatabase: AppDatabase) 
         return appDatabase.drinkDao().getDrinkWater(drinkEntity.date ?: Date())
     }
 
-    suspend fun getDrinkWater(date: Date): List<DrinkEntity> {
-        return appDatabase.drinkDao().getDrinkWater(date)
-    }
+    suspend fun getDrinkWater(date: Date) = appDatabase.drinkDao().getDrinkWater(date)
 
     suspend fun doEditDrinkWater(drinkEntity: DrinkEntity) =
         appDatabase.drinkDao().doEditDrinkWater(drinkEntity)

@@ -1,8 +1,8 @@
 package id.co.minumin.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import android.os.Build
 import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import android.util.Log
@@ -15,12 +15,10 @@ import java.io.FileOutputStream
 internal object DriveFileUtil {
     fun getPath(context: Context, uri: Uri): String {
         // check here to KITKAT or new version
-        val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
+        val isKitKat = true
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            if (isGoogleDriveUri(uri)) {
-                return getDriveFilePath(uri, context)
-            }
+            if (isGoogleDriveUri(uri)) return getDriveFilePath(uri, context)
         }
         return ""
     }
@@ -33,12 +31,12 @@ internal object DriveFileUtil {
         return "com.android.providers.media.documents" == uri.authority
     }
 
+    @SuppressLint("Recycle")
     private fun getDriveFilePath(
         uri: Uri,
         context: Context
     ): String {
-        val returnCursor =
-            context.contentResolver.query(uri, null, null, null, null)
+        val returnCursor = context.contentResolver.query(uri, null, null, null, null)
         /*
          * Get the column indexes of the data in the Cursor,
          *     * move to the first row in the Cursor, get the data,

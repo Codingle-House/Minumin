@@ -24,12 +24,11 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
         serializer = UserSerializer,
     )
 
-    suspend fun updateUserNavigation(navigation: UserNavigationDto) {
+    suspend fun updateUserNavigation(navigation: UserNavigationDto) =
         context.dataStore.updateData { user ->
             user.toBuilder().setNavigation(dataMapper.convertNavigationDtoToProto(navigation))
                 .build()
         }
-    }
 
     fun getUserNavigation() = context.dataStore.data.map {
         dataMapper.convertToNavigationDto(it.navigation)
@@ -48,9 +47,7 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
         }
     }
 
-    fun getUserRegisterData() = context.dataStore.data.map {
-        dataMapper.convertUserRegisterDto(it)
-    }
+    fun getUserRegisterData() = context.dataStore.data.map { dataMapper.convertUserRegisterDto(it) }
 
     suspend fun updateWeatherCondition(weather: WeatherConditionDto): Flow<WeatherConditionDto> {
         context.dataStore.updateData { user ->
@@ -58,9 +55,7 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
                 weatherCondition = dataMapper.convertWeatherDtoToProto(weather)
             }.build()
         }
-        return context.dataStore.data.map {
-            dataMapper.convertToWeatherDto(it.weatherCondition)
-        }
+        return context.dataStore.data.map { dataMapper.convertToWeatherDto(it.weatherCondition) }
     }
 
     fun getWeatherCondition() = context.dataStore.data.map {
@@ -73,9 +68,7 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
                 physicalCondition = dataMapper.convertPhysicalDtoToProto(weather)
             }.build()
         }
-        return context.dataStore.data.map {
-            dataMapper.convertToPhysycalDto(it.physicalCondition)
-        }
+        return context.dataStore.data.map { dataMapper.convertToPhysycalDto(it.physicalCondition) }
     }
 
     fun getPhysicalActivities() = context.dataStore.data.map {
@@ -134,8 +127,4 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
         context.dataStore.updateData { user ->
             user.toBuilder().apply { isPro = purchaseStatus }.build()
         }
-
-    companion object {
-        const val TAG = "UserPreferenceManager"
-    }
 }

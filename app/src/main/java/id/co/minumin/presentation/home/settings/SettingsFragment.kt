@@ -20,6 +20,7 @@ import id.co.minumin.base.BaseFragment
 import id.co.minumin.const.MinuminConstant
 import id.co.minumin.const.MinuminConstant.BACKUP_DRIVE
 import id.co.minumin.const.MinuminConstant.MAN
+import id.co.minumin.const.MinuminConstant.SECRET_KEY
 import id.co.minumin.core.ext.showToast
 import id.co.minumin.data.dto.LanguageDto
 import id.co.minumin.data.dto.LanguageDto.ENGLISH
@@ -89,7 +90,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                     Restore.Init()
                         .database(appDatabase)
                         .backupFilePath(path.orEmpty())
-                        .secretKey(MinuminConstant.SECRET_KEY)
+                        .secretKey(SECRET_KEY)
                         .onWorkFinishListener { success, message ->
                             if (success) {
                                 settingsViewModel.doRestoreUserSetting()
@@ -432,7 +433,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                 .database(appDatabase)
                 .path(downloadFolder)
                 .fileName(fileName)
-                .secretKey(MinuminConstant.SECRET_KEY)
+                .secretKey(SECRET_KEY)
                 .onWorkFinishListener { success, message ->
                     if (!success) {
                         context?.showToast(message)

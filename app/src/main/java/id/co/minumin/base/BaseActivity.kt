@@ -6,7 +6,6 @@ import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
@@ -59,9 +58,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             }
         } else if (SDK_INT >= M) {
             when {
-                isLightStatusBar -> {
-                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                }
+                isLightStatusBar -> window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
                 else -> {
                     val decorView = window.decorView
