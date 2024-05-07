@@ -9,7 +9,6 @@ import id.co.minumin.data.dto.LanguageDto
 import id.co.minumin.data.dto.UserNavigationDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.util.SingleLiveEvent
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,19 +26,17 @@ class SplashScreenViewModel @Inject constructor(
     private val languageSelection = SingleLiveEvent<LanguageDto>()
     fun observeLanguageSelection(): LiveData<LanguageDto> = languageSelection
 
-    fun isOnBoarding() {
+    init {
         viewModelScope.launch {
-            userPreferenceManager.getUserNavigation().collect {
-                userNavigation.postValue(it)
+            // To be able access all features
+            with(userPreferenceManager) {
+                updatePurchaseStatus(true)
+                getLanguageSelection().collect { languageSelection.postValue(it) }
             }
         }
     }
 
-    fun getLastSelectedLanguage() {
-        viewModelScope.launch {
-            userPreferenceManager.getLanguageSelection().collect {
-                languageSelection.postValue(it)
-            }
-        }
+    fun isOnBoarding() = viewModelScope.launch {
+        userPreferenceManager.getUserNavigation().collect { userNavigation.postValue(it) }
     }
 }

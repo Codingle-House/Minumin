@@ -1,6 +1,7 @@
 package id.co.minumin.presentation.splashscreen
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Handler
@@ -13,7 +14,11 @@ import androidx.core.view.isGone
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseActivity
-import id.co.minumin.data.dto.UserNavigationDto
+import id.co.minumin.data.dto.UserNavigationDto.NONE
+import id.co.minumin.data.dto.UserNavigationDto.ON_BOARD
+import id.co.minumin.data.dto.UserNavigationDto.REGISTER
+import id.co.minumin.data.dto.UserNavigationDto.RESULT
+import id.co.minumin.data.dto.UserNavigationDto.UNRECOGNIZED
 import id.co.minumin.databinding.ActivitySplashScreenBinding
 import id.co.minumin.presentation.home.HomeActivity
 import id.co.minumin.presentation.onboarding.OnBoardingActivity
@@ -28,6 +33,7 @@ import kotlin.math.pow
  * Created by pertadima on 26,January,2021
  */
 
+@SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class SplashscreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
 
@@ -40,30 +46,34 @@ class SplashscreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     lateinit var localeHelper: LocaleHelper
 
     override fun onViewCreated() {
-        splashScreenViewModel.getLastSelectedLanguage()
+
     }
 
     override fun onViewModelObserver() {
         with(splashScreenViewModel) {
             observeIsUserNavigation().onResult { navigation ->
                 val intent = when (navigation) {
-                    UserNavigationDto.NONE -> Intent(
+                    NONE -> Intent(
                         this@SplashscreenActivity,
                         OnBoardingActivity::class.java
                     )
-                    UserNavigationDto.ON_BOARD -> Intent(
+
+                    ON_BOARD -> Intent(
                         this@SplashscreenActivity,
                         RegisterActivity::class.java
                     )
-                    UserNavigationDto.REGISTER -> Intent(
+
+                    REGISTER -> Intent(
                         this@SplashscreenActivity,
                         ResultActivity::class.java
                     )
-                    UserNavigationDto.RESULT -> Intent(
+
+                    RESULT -> Intent(
                         this@SplashscreenActivity,
                         HomeActivity::class.java
                     )
-                    UserNavigationDto.UNRECOGNIZED -> Intent(
+
+                    UNRECOGNIZED -> Intent(
                         this@SplashscreenActivity,
                         OnBoardingActivity::class.java
                     )
@@ -81,21 +91,17 @@ class SplashscreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
                 binding.splashscreenImageviewLogo.doBounceAnimation {
                     binding.splashscreenTextviewMotto.isGone = false
                     binding.splashscreenTextviewAppname.isGone = false
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        splashScreenViewModel.isOnBoarding()
-                    }, ACTIVITY_TRANSITION_DELAY)
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        { splashScreenViewModel.isOnBoarding() },
+                        ACTIVITY_TRANSITION_DELAY
+                    )
                 }
             }
         }
     }
 
     private fun View.doBounceAnimation(onAnimationEnd: () -> Unit) {
-        val bounceInterpolator: Interpolator = Interpolator { v ->
-            getPowOut(
-                v,
-                POW
-            )
-        }
+        val bounceInterpolator = Interpolator { v -> getPowOut(v) }
 
         ObjectAnimator.ofFloat(
             this,
@@ -114,8 +120,8 @@ class SplashscreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
         Handler(Looper.getMainLooper()).postDelayed({ onAnimationEnd.invoke() }, delayMillis)
     }
 
-    private fun getPowOut(elapsedTimeRate: Float, pow: Double): Float {
-        return (1.toFloat() - (1 - elapsedTimeRate.toDouble()).pow(pow)).toFloat()
+    private fun getPowOut(elapsedTimeRate: Float): Float {
+        return (1.toFloat() - (1 - elapsedTimeRate.toDouble()).pow(POW)).toFloat()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

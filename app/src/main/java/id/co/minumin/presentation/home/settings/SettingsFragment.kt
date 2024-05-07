@@ -39,15 +39,12 @@ import id.co.minumin.presentation.dialog.WaterConsumptionDialog
 import id.co.minumin.presentation.notification.NotificationActivity
 import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.presentation.splashscreen.SplashscreenActivity
-import id.co.minumin.presentation.view.ProFeatureView.Action.Click
-import id.co.minumin.presentation.view.ProFeatureView.Action.Close
 import id.co.minumin.presentation.widgetpreview.WidgetPreviewActivity
 import id.co.minumin.util.DateTimeUtil
 import id.co.minumin.util.DateTimeUtil.DEFAULT_TIME
 import id.co.minumin.util.DateTimeUtil.DEFAULT_TIME_FULL
 import id.co.minumin.util.DriveFileUtil
 import id.co.minumin.util.DriveServiceHelper
-import id.co.minumin.util.FirebaseDatabaseUtil
 import id.co.minumin.util.LocaleHelper
 import ir.androidexception.roomdatabasebackupandrestore.Backup
 import ir.androidexception.roomdatabasebackupandrestore.Restore
@@ -139,29 +136,11 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private fun initUi() {
         OverScrollDecoratorHelper.setUpOverScroll(binding.settingsScrollview)
-        with(binding.settingsProview) {
-            setListener { action ->
-                when (action) {
-                    Click -> {
-                        val intent = Intent(context, ProActivity::class.java)
-                        startActivity(intent)
-                        activity?.overridePendingTransition(
-                            R.anim.anim_fade_in,
-                            R.anim.anim_fade_out
-                        )
-                    }
-
-                    Close -> {
-
-                    }
-                }
-            }
-        }
     }
 
 
-    private fun generalInformationListener() {
-        binding.settingsRelativelayoutLanguage.setOnClickListener {
+    private fun generalInformationListener() = with(binding) {
+        settingsRelativelayoutLanguage.setOnClickListener {
             val code = localeHelper.convertLanguageDtoToCode(selectedLanguageDto)
             LanguageSelectionDialog.newInstance(requireContext(), code).apply {
                 setListener {
@@ -172,11 +151,11 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             }
         }
 
-        binding.settingsRelativelayoutMetric.setOnClickListener {
+        settingsRelativelayoutMetric.setOnClickListener {
             MetricSelectionDialog.newInstance(requireContext()).show()
         }
 
-        binding.settingsRelativelayoutTotal.setOnClickListener {
+        settingsRelativelayoutTotal.setOnClickListener {
             WaterConsumptionDialog.newInstance(
                 requireContext(),
                 userRegisterDto?.waterNeeds ?: 0
@@ -526,9 +505,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     private fun handlePurchaseStatusLiveData(status: Boolean) {
         purchaseStatus = status
         handlePurchaseStatusIcon()
-        if (purchaseStatus.not()) {
-            binding.settingsProview.showWithAnimation(false)
-        }
     }
 
     private fun checkPurchaseStatus(onPurchase: () -> Unit) {

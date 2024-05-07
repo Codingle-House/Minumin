@@ -31,8 +31,6 @@ class BackupSuccessDialog(context: Context) : MinuminDialog<DialogBackupSuccessB
 
 
     companion object {
-        fun newInstance(context: Context): BackupSuccessDialog {
-            return BackupSuccessDialog(context)
-        }
+        fun newInstance(context: Context) = BackupSuccessDialog(context)
     }
 }

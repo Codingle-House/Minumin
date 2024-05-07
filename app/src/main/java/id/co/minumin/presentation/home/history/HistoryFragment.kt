@@ -70,10 +70,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     lateinit var diffCallback: DiffCallback
 
     private val customMarkerView by lazy {
-        CustomChartMarkerView(
-            requireContext(),
-            unit = getString(R.string.general_text_ml)
-        )
+        CustomChartMarkerView(requireContext(), unit = getString(R.string.general_text_ml))
     }
 
     private val drinkAdapter by lazy {

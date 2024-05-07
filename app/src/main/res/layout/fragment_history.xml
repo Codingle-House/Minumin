@@ -25,14 +25,6 @@
                 android:gravity="center"
                 android:text="@string/title_history"
                 app:minumin_text_code="h6_B" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:id="@+id/history_imageview_ads"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:src="@drawable/general_ic_ads" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
