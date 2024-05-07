@@ -1,0 +1,185 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'dagger.hilt.android.plugin'
+    id "com.google.protobuf" version "0.9.4"
+    id 'com.google.devtools.ksp'
+    id 'kotlin-kapt'
+}
+
+sourceSets {
+    main.java.srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+    main.java.srcDirs += "$projectDir/src/main/proto"
+}
+
+android {
+    compileSdk 34
+    buildToolsVersion "34.0.0"
+    namespace 'id.co.minumin'
+
+    defaultConfig {
+        applicationId "id.co.minumin"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 7
+        versionName "1.0.1"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs "ind", "en"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    bundle {
+        density {
+            // Different APKs are generated for devices with different screen densities; true by default.
+            enableSplit true
+        }
+        abi {
+            // Different APKs are generated for devices with different CPU architectures; true by default.
+            enableSplit true
+        }
+        language {
+            enableSplit false
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.10.0:osx-x86_64"
+    }
+    plugins {
+        javalite {
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0:osx-x86_64'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.plugins {
+                javalite {}
+            }
+        }
+    }
+}
+
+processResources {
+    exclude('**/*.proto')
+}
+
+configurations {
+    configureEach {
+        exclude module: 'httpclient'
+        exclude module: 'commons-logging'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation 'androidx.activity:activity-ktx:1.9.0'
+    implementation 'androidx.fragment:fragment-ktx:1.7.0'
+
+    implementation 'androidx.vectordrawable:vectordrawable:1.2.0'
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt 'com.google.dagger:hilt-compiler:2.48'
+
+    //Live Cycle
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
+    implementation('androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0') {
+        exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel'
+    }
+
+    // Coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
+
+    // Data Store Protobug altenate to shared preference
+    implementation "androidx.datastore:datastore:1.1.1"
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+
+    // Internal Library
+    implementation project(":core")
+    implementation project(":uikit")
+
+    // Responsive Size
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    // Firebase & google
+    implementation platform('com.google.firebase:firebase-bom:33.0.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.http-client:google-http-client-gson:1.26.0'
+    implementation('com.google.api-client:google-api-client-android:1.26.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    implementation('com.google.apis:google-api-services-drive:v3-rev136-1.25.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+
+    // Others
+    implementation 'me.everything:overscroll-decor-android:1.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.michalsvec:single-row-calednar:1.0.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
+    // Room
+    implementation "androidx.room:room-runtime:2.6.1"
+    implementation "androidx.room:room-ktx:2.6.1"
+    ksp "androidx.room:room-compiler:2.6.1"
+    implementation 'com.github.salehyarahmadi:RoomDatabaseBackupAndRestore:v1.0.1'
+
+    // Database debug
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+kapt {
+    correctErrorTypes true
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="id.co.minumin">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- Permissions required by GoogleAuthUtil -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+    <application
+        android:name=".MainApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Minumin">
+
+        <activity
+            android:name=".presentation.home.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.splashscreen.SplashscreenActivity"
+            android:configChanges="locale"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.onboarding.OnBoardingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.register.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.progress.ProgressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.result.ResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.notification.NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.pro.ProActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".presentation.about.AboutUsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".presentation.widgetpreview.WidgetPreviewActivity"
+            android:screenOrientation="portrait" />
+
+        <receiver android:name=".notifications.receivers.NotifierReceiver" />
+        <receiver
+            android:name=".notifications.receivers.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <receiver
+            android:name=".widget.BroadcastWidgetOne"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/broadcast_widget_one" />
+        </receiver>
+
+        <receiver
+            android:name=".widget.BroadcastWidgetTwo"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/broadcast_widget_two" />
+        </receiver>
+    </application>
+
+</manifest>

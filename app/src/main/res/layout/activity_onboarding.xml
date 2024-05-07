@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/onboarding_imageview_happy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_160sdp"
+        android:src="@drawable/general_ic_happy"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/onboarding_textview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:gravity="center"
+        android:text="@string/onboarding_text_title"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/onboarding_imageview_happy"
+        app:minumin_text_code="h6_B"
+        app:minumin_text_color="dark" />
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/onboarding_textview_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="@string/onboarding_text_message"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/onboarding_textview_title"
+        app:minumin_text_code="p_a_r"
+        app:minumin_text_color="dark" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/onboarding_button_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        android:background="@drawable/general_selector_button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/onboarding_text_register_now"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

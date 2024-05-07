@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="blue_primary">#3DAFEE</color>
+    <color name="blue_lights">#6ECCFF</color>
+    <color name="button_disable">#7D7D7D</color>
+    <color name="light_gray">#FAFAFA</color>
+    <color name="line_gray">#F5F5F5</color>
+    <color name="shadow_color">#C1C1C1</color>
+    <color name="red_error">#E05D5C</color>
+    <color name="green_progress">#0EFFA9</color>
+    <color name="blue_progressbackground">#67C3F6</color>
+    <color name="green_card">#27C18A</color>
+    <color name="blue_inactive">#125A83</color>
+
+    <color name="green_chart_start">#2CCA3B</color>
+    <color name="green_chart_end">#71F482</color>
+</resources>

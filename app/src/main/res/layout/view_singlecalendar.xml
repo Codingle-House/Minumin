@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/singlecalendar_linear_container"
+    android:layout_width="@dimen/_40sdp"
+    android:layout_height="@dimen/_40sdp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/singlecalendar_textview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:minumin_text_code="h6_B"
+        tools:text="16" />
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/singlecalendar_textview_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:textSize="@dimen/_6ssp"
+        app:minumin_text_code="h7_R"
+        tools:text="Jan" />
+</LinearLayout>

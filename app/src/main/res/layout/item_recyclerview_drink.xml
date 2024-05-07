@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_12sdp">
+
+    <ImageView
+        android:id="@+id/drink_imageview_cup"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/general_bg_circle_gray"
+        android:padding="@dimen/_8ssp"
+        android:src="@drawable/general_ic_cup_100" />
+
+    <ImageView
+        android:id="@+id/drink_imageview_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        android:src="@drawable/general_ic_menu" />
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/drink_textview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_toEndOf="@id/drink_imageview_cup"
+        tools:text="Pukul 10:00" />
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/drink_imageview_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/drink_textview_date"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_toStartOf="@id/drink_imageview_menu"
+        android:layout_toEndOf="@id/drink_imageview_cup"
+        app:minumin_text_code="p_a_r"
+        tools:text="Kamu telah meminum air sebanyak 100ml" />
+</RelativeLayout>

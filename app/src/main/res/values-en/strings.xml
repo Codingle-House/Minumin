@@ -1,0 +1,168 @@
+<resources>
+    <string name="app_name">Minumin</string>
+
+    <string name="general_text_kilograms">Kilograms</string>
+    <string name="general_text_next">Next</string>
+    <string name="general_text_understand">Understood</string>
+    <string name="general_text_ml_day">%s ml/day</string>
+    <string name="general_text_unit_kg">%s kg</string>
+    <string name="general_text_choose">Choose</string>
+    <string name="general_text_ml">ml</string>
+    <string name="general_placeholder_ml">%s ml</string>
+    <string name="general_text_time">%s O\'clock</string>
+    <string name="general_text_chart_formatmarkerview">%1$s %2$s</string>
+    <string name="general_text_edit">Edit</string>
+    <string name="general_text_delete">Delete</string>
+    <string name="general_text_explore">Explore</string>
+
+    <string name="splashscreen_text_motto">"\"Live healthy by drinking enough water\""</string>
+
+    <string name="onboarding_text_title">Hello My Friend</string>
+    <string name="onboarding_text_message">Introducing my name is <b> Imin </b>, your personal assistant
+        which will remind you to live healthy by drinking enough water.
+    </string>
+    <string name="onboarding_text_register_now">Register Now</string>
+
+    <string name="register_text_title">Hello My Friend</string>
+    <string name="register_text_message">Filling in the data below, can help <b> Imin </b> to organize
+        your drinking schedule.
+    </string>
+    <string name="register_text_gender">Gender</string>
+    <string name="register_text_man">Man</string>
+    <string name="register_text_woman">Woman</string>
+    <string name="register_error_gender">Gender cannot be empty</string>
+    <string name="register_text_weight">Weight</string>
+    <string name="register_text_weight_error">Weight cannot be empty</string>
+    <string name="register_text_weight_hint">80</string>
+    <string name="register_text_sleeping_time">Wake Up and Sleep Time</string>
+    <string name="register_text_sleeping_error">Cannot be empty</string>
+    <string name="register_text_sleeping_am">AM</string>
+    <string name="register_text_sleeping_pm">PM</string>
+    <string name="register_text_sleeping_hint">00:00</string>
+
+    <string name="progress_text_title">Please waiting for a momment…</string>
+    <string name="progress_text_desc"><b> Imin </b> is processing your drinking schedule, it\'s not taking long :)</string>
+
+    <string name="result_text_title">Daily Water Needs :</string>
+    <string name="result_text_desc">Let\'s fulfill your daily water needs to achieve a healthier life.</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_history">History</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="settings_title_reminder">Reminder Settings</string>
+    <string name="settings_text_reminder">Reminder Schedule</string>
+    <string name="settings_text_widget">Add Widget</string>
+    <string name="settings_title_general">General Settings</string>
+    <string name="settings_text_remove_ads">Remove Ads</string>
+    <string name="settings_text_unit">Unit</string>
+    <string name="settings_text_total">Water Needs</string>
+    <string name="settings_text_language">Language</string>
+    <string name="settings_title_data">Personal Information</string>
+    <string name="settings_title_backup">Backup and Restore</string>
+    <string name="settings_text_backup_googledrive">Backup to Google Drive</string>
+    <string name="settings_text_backup_local">Backup to your Phone</string>
+    <string name="settings_text_restore_googledrive">Restore from Google Drive</string>
+    <string name="settings_text_restore_local">Restore your data</string>
+    <string name="settings_text_wakeup">Wake Up Time</string>
+    <string name="settings_text_sleep">Sleep Time</string>
+    <string name="settings_text_reset">Reset</string>
+    <string name="settings_title_other">Others</string>
+    <string name="settings_text_report">Report Problem</string>
+    <string name="settings_text_suggestion">Criticism and Suggestions</string>
+    <string name="settings_text_rate">Rate Us</string>
+    <string name="settings_text_about">About Us</string>
+    <string name="settings_text_successdrive">Your data has been successfully backed up on google drive with the name %s</string>
+
+    <string name="pro_text_message">Pay once, enjoy the application without ads and other excellent features</string>
+    <string name="pro_title_page">Pro upgrade</string>
+    <string name="pro_text_desc">Get various advantages with the <b>pro</b> upgrade</string>
+    <string name="pro_text_no_ads">Without ads</string>
+    <string name="pro_text_history">History more than 7 days</string>
+    <string name="pro_text_widget">Widget for quick action</string>
+    <string name="pro_text_backup">Data backup</string>
+    <string name="pro_text_update">Lifetime free renewal</string>
+    <string name="pro_action_upgrade">Upgrade</string>
+    <string name="pro_action_recover">Restore Purchases</string>
+
+    <string name="home_text_message_red">You need to drink water</string>
+    <string name="home_text_message_orange">Come on, drink more water</string>
+    <string name="home_text_message_done">Sufficient water needs</string>
+
+    <string name="home_text_water_consumption">%s / %s ml</string>
+    <string name="home_text_changecup">Glass Selection</string>
+    <string name="home_title_tips">Tips For You</string>
+    <string name="home_text_tips">Keep your body hydrated by drinking enough water</string>
+    <string name="home_title_history">Today History</string>
+    <string name="home_text_item_drink">You have drunk water as much as %s</string>
+
+    <string name="state_title_empty">Let\'s Drink Water</string>
+    <string name="state_text_empty">Hello, you haven\'t drunk water today. Come on, don\'t forget to drink water.</string>
+
+    <string name="dialog_title_weather">Weather Conditions</string>
+    <string name="dialog_title_physical">Physical Activity</string>
+
+    <string name="dialog_text_weather_hot">Hot</string>
+    <string name="dialog_text_weather_warm">Warm</string>
+    <string name="dialog_text_weather_normal">Normal</string>
+    <string name="dialog_text_weather_winter">Cold</string>
+
+    <string name="dialog_value_weather_hot">+412ml</string>
+    <string name="dialog_value_weather_warm">+247ml</string>
+    <string name="dialog_value_weather_normal">+0ml</string>
+    <string name="dialog_value_weather_winter">+165ml</string>
+
+    <string name="dialog_text_physical_extraactive">Very Active</string>
+    <string name="dialog_text_physical_active">Active</string>
+    <string name="dialog_text_physical_normal">Normal</string>
+
+    <string name="dialog_value_physical_extraactive">+495ml</string>
+    <string name="dialog_value_physical_active">+330ml</string>
+    <string name="dialog_value_physical_normal">+0ml</string>
+
+    <string name="dialog_title_cup_selection">Glass Selection</string>
+    <string name="dialog_title_gender_selection">Gender Selection</string>
+    <string name="dialog_title_weight">Change Body Weight</string>
+    <string name="dialog_title_water_consumption">Daily Water Needs</string>
+    <string name="dialog_hint_water_consumption">1200</string>
+    <string name="dialog_error_water_consumption">Water needs cannot be empty</string>
+
+    <string name="dialog_text_language_indonesia">Indonesian</string>
+    <string name="dialog_text_language_english">English</string>
+
+    <string name="dialog_text_metric_general">Sistem Metrik (kg, ml)</string>
+    <string name="dialog_text_metric_us">Sistem US (lf.oz, lb)</string>
+
+    <string name="history_placeholder_dayframe">Last %s Days</string>
+    <string name="history_text_total_water">Total Water \nDrinked</string>
+    <string name="history_text_average_water">Average Water \nDrinked per Day</string>
+    <string name="history_title_achievement">Weekly Completions</string>
+
+    <string name="notification_title">Reminder Schedule</string>
+    <string name="notification_text_message">We\'ll optimize reminder time based on your productive hours</string>
+    <string name="notification_text_wakeupandsleep">Time to wake up and sleep</string>
+    <string name="notification_text_interval">Every one hour</string>
+    <string name="notification_title_setting">Set Notifications</string>
+    <string name="notification_text_status">Notifications Status</string>
+    <string name="notification_text_sound">Turn on Sound</string>
+    <string name="notification_text_vibrate">Turn on Vibrate</string>
+
+    <string name="notifdialog_title_custom">Come on, drink water</string>
+    <string name="notifdialog_text_custom">Keep your body hydrated by drinking enough water</string>
+
+    <string name="notifdialog_title_reminder">Time to drink water!</string>
+    <string name="notifdialog_text_reminder">Now your schedule for drinking water</string>
+
+    <string name="backupdialog_title_success">Data Backed Up Successfully</string>
+    <string name="backupdialog_text_success">Your data has been successfully backed up and we have saved it on your cellphone.</string>
+
+    <string name="aboutus_text_description"><b>Minumin</b> is an application that was created to remind you to live a healthier life by simply drinking water.</string>
+    <string name="aboutus_text_copyright">We thank you for using several vectors from the following accounts:</string>
+    <string name="aboutus_text_freepik">Freepik</string>
+    <string name="aboutus_text_vectormarket">Vectors Market</string>
+    <string name="aboutus_text_bqln">Bqln</string>
+    <string name="aboutus_text_pixelperfect">Pixel Perfect</string>
+    <string name="aboutus_text_srip">Srip</string>
+
+    <string name="widgetpreview_text_description">By adding the <b>minumin</b> widget on the main page, you will get quick access to increase your water consumption.</string>
+</resources>

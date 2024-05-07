@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/general_button_default"
+    android:padding="@dimen/_16sdp">
+
+
+    <ImageView
+        android:id="@+id/widget_cardview_mascot"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/general_shape_circle_white"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/_7sdp"
+        android:src="@drawable/general_ic_mascot" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@id/widget_cardview_mascot"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/widget_textview_current_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18ssp"
+            tools:text="1500 ml" />
+
+        <TextView
+            android:id="@+id/widget_textview_total_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            tools:text="2000 ml" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/widget_cardview_add_1"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/general_shape_circle_lightblue"
+        android:padding="@dimen/_10sdp"
+        android:src="@drawable/general_ic_add" />
+</RelativeLayout>

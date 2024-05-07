@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/blue_primary">
+
+    <ImageView
+        android:id="@+id/splashscreen_imageview_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/general_ic_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/splashscreen_textview_appname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/splashscreen_imageview_logo"
+        app:minumin_text_code="h6_B"
+        app:minumin_text_color="light" />
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/splashscreen_textview_motto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:text="@string/splashscreen_text_motto"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/splashscreen_textview_appname"
+        app:minumin_text_code="p_a_i"
+        app:minumin_text_color="light" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/general_ic_wave"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

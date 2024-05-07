@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "306364275767",
+    "project_id": "minumin-229b7",
+    "storage_bucket": "minumin-229b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306364275767:android:7b36db2af34b583e5f73b2",
+        "android_client_info": {
+          "package_name": "id.co.minumin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306364275767-iqf3fenqs58rp1mpli6qadruu7jp9jr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACGyai2DbC0LyTdzIslh0zgaXrgf_3eb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306364275767-iqf3fenqs58rp1mpli6qadruu7jp9jr4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

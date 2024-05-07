@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_bg_gradient">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/main_linear_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_bg_header"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/main_textview_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:paddingVertical="@dimen/_5sdp"
+                        app:minumin_text_code="h7_B"
+                        app:minumin_text_color="light" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/general_shape_circle_bluedark">
+
+                        <id.co.minumin.presentation.view.CircularProgressBar
+                            android:id="@+id/main_progress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:animationDuration="500"
+                            app:progressBackgroundColor="@color/blue_progressbackground"
+                            app:progressBackgroundWidth="@dimen/_16sdp"
+                            app:progressCap="round"
+                            app:progressColor="@color/green_progress"
+                            app:progressValue="0"
+                            app:progressWidth="@dimen/_16sdp"
+                            app:showDot="false" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <id.co.minumin.uikit.MinuminTextView
+                                android:id="@+id/main_textview_percentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:minumin_text_code="h2"
+                                app:minumin_text_color="light"
+                                tools:text="80 %" />
+
+                            <id.co.minumin.uikit.MinuminTextView
+                                android:id="@+id/main_textview_consumption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:minumin_text_code="h7_S"
+                                app:minumin_text_color="light"
+                                tools:text="0/1600ml" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_linear_header"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-60dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/main_imageview_activities"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:background="@drawable/general_shape_circle_white"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="@dimen/_10sdp"
+                        app:backgroundTint="@color/white"
+                        tools:ignore="ContentDescription"
+                        tools:srcCompat="@drawable/general_ic_bodynormal" />
+
+                    <View
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp" />
+
+                    <ImageView
+                        android:id="@+id/main_imageview_cup"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:background="@drawable/general_shape_circle_white"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="@dimen/_18sdp"
+                        app:backgroundTint="@color/white"
+                        tools:ignore="ContentDescription"
+                        tools:srcCompat="@drawable/general_ic_cupadd_100" />
+
+                    <View
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp" />
+
+                    <ImageView
+                        android:id="@+id/main_imageview_weather"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:background="@drawable/general_shape_circle_white"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="@dimen/_10sdp"
+                        app:backgroundTint="@color/white"
+                        tools:ignore="ContentDescription"
+                        tools:srcCompat="@drawable/general_ic_weatherwarm" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <id.co.minumin.uikit.MinuminTextView
+                android:id="@+id/main_textview_cup_selection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/home_text_changecup"
+                android:textColor="@color/blue_primary"
+                app:minumin_text_code="p_a_b" />
+
+            <id.co.minumin.presentation.view.ProFeatureView
+                android:id="@+id/main_proview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="10sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:outlineAmbientShadowColor="@color/green_card"
+                android:outlineSpotShadowColor="@color/green_card"
+                app:cardBackgroundColor="@color/green_card"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_2sdp"
+                tools:targetApi="p">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_title_tips"
+                        app:minumin_text_code="h7_B"
+                        app:minumin_text_color="light" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:text="@string/home_text_tips"
+                        app:minumin_text_code="h7_R"
+                        app:minumin_text_color="light" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="@string/home_title_history" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/main_textview_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:minumin_text_code="p_a_r"
+                        tools:text="Jumat, 1 Januari 2021" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/line_gray" />
+
+                    <include
+                        android:id="@+id/main_placeholder"
+                        layout="@layout/view_state_empty" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/main_recyclerview_drink"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

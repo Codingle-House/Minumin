@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <id.co.minumin.uikit.MinuminTextView
+        android:id="@+id/history_textview_chart_marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/general_layer_chart_marker"
+        android:paddingLeft="@dimen/_4sdp"
+        android:paddingTop="@dimen/_2sdp"
+        android:paddingRight="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:textAlignment="center"
+        android:textSize="@dimen/_9ssp"
+        app:minumin_text_code="h7_R"
+        app:minumin_text_color="light"
+        tools:text="ASD ASD" />
+</LinearLayout>

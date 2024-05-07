@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/general_bg_dialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:text="@string/dialog_title_cup_selection" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/cup_imageview_100"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:background="@drawable/general_shape_rounded_border"
+                android:padding="@dimen/_15sdp"
+                app:srcCompat="@drawable/general_ic_cupadd_100" />
+
+            <View
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp" />
+
+            <ImageView
+                android:id="@+id/cup_imageview_150"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:background="@drawable/general_shape_rounded_border"
+                android:padding="@dimen/_15sdp"
+                app:srcCompat="@drawable/general_ic_cupadd_150" />
+
+            <View
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp" />
+
+            <ImageView
+                android:id="@+id/cup_imageview_200"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:background="@drawable/general_shape_rounded_border"
+                android:padding="@dimen/_15sdp"
+                app:srcCompat="@drawable/general_ic_cupadd_200" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginVertical="@dimen/_16sdp"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/cup_imageview_300"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:background="@drawable/general_shape_rounded_border"
+                android:padding="@dimen/_15sdp"
+                app:srcCompat="@drawable/general_ic_cupadd_300" />
+
+            <View
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp" />
+
+            <ImageView
+                android:id="@+id/cup_imageview_400"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:background="@drawable/general_shape_rounded_border"
+                android:padding="@dimen/_15sdp"
+                app:srcCompat="@drawable/general_ic_cupadd_400" />
+
+            <View
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:background="@drawable/general_shape_rounded_border"
+                android:padding="@dimen/_15sdp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/general_ic_cupadd_400" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

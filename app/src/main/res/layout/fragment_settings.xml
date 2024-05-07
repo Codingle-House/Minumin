@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp">
+
+            <id.co.minumin.uikit.MinuminTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/title_settings"
+                app:minumin_text_code="h6_B" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/settings_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <id.co.minumin.presentation.view.ProFeatureView
+                android:id="@+id/settings_proview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:text="@string/settings_title_reminder"
+                        app:minumin_text_code="h6_B"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:background="@color/line_gray" />
+
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_reminder"
+                        app:drawableEndCompat="@drawable/general_ic_chevron_right"
+                        app:drawableStartCompat="@drawable/general_ic_bell"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_widget"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_widget"
+                        app:drawableEndCompat="@drawable/general_ic_lock"
+                        app:drawableStartCompat="@drawable/general_ic_crown"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:text="@string/settings_title_general"
+                        app:minumin_text_code="h6_B"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:background="@color/line_gray" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/settings_relativelayout_metric"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:visibility="gone">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/settings_textview_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/blue_primary"
+                            app:minumin_text_code="p_a_b"
+                            tools:text="kg, ml" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/settings_textview_unit"
+                            android:text="@string/settings_text_unit"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray"
+                        android:visibility="gone" />
+
+                    <RelativeLayout
+                        android:id="@+id/settings_relativelayout_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/settings_textview_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/blue_primary"
+                            app:minumin_text_code="p_a_b"
+                            tools:text="1000 ml/hari" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/settings_textview_total"
+                            android:text="@string/settings_text_total"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <RelativeLayout
+                        android:id="@+id/settings_relativelayout_language"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/settings_textview_language"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/blue_primary"
+                            app:minumin_text_code="p_a_b"
+                            tools:text="Indonesia" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/settings_textview_language"
+                            android:text="@string/settings_text_language"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:text="@string/settings_title_data"
+                        app:minumin_text_code="h6_B"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:background="@color/line_gray" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/settings_relativelayout_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/settings_textview_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/blue_primary"
+                            app:minumin_text_code="p_a_b"
+                            tools:text="Pria" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/settings_textview_gender"
+                            android:text="@string/register_text_gender"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark" />
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <RelativeLayout
+                        android:id="@+id/settings_relativelayout_weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/settings_textview_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/blue_primary"
+                            app:minumin_text_code="p_a_b"
+                            tools:text="70 kg" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/settings_textview_weight"
+                            android:text="@string/register_text_weight"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/settings_relativelayout_time_wakeup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/settings_textview_wakeup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/blue_primary"
+                            app:minumin_text_code="p_a_b"
+                            tools:text="10:00 AM" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/settings_textview_wakeup"
+                            android:text="@string/settings_text_wakeup"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/settings_relativelayout_time_sleep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/settings_textview_sleep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/blue_primary"
+                            app:minumin_text_code="p_a_b"
+                            tools:text="10:00 AM" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@id/settings_textview_sleep"
+                            android:text="@string/settings_text_sleep"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:text="@string/settings_title_backup"
+                        app:minumin_text_code="h6_B"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:background="@color/line_gray" />
+
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_drivebackup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_backup_googledrive"
+                        app:drawableEndCompat="@drawable/general_ic_lock"
+                        app:drawableStartCompat="@drawable/general_ic_drive"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_localbackup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_backup_local"
+                        app:drawableEndCompat="@drawable/general_ic_lock"
+                        app:drawableStartCompat="@drawable/general_ic_phone"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_driverestore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_restore_googledrive"
+                        android:visibility="gone"
+                        app:drawableEndCompat="@drawable/general_ic_lock"
+                        app:drawableStartCompat="@drawable/general_ic_drive"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray"
+                        android:visibility="gone" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_localrestore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_restore_local"
+                        app:drawableEndCompat="@drawable/general_ic_lock"
+                        app:drawableStartCompat="@drawable/general_ic_restore"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:text="@string/settings_title_other"
+                        app:minumin_text_code="h6_B"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:background="@color/line_gray" />
+
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_report"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_report"
+                        app:drawableEndCompat="@drawable/general_ic_chevron_right"
+                        app:drawableStartCompat="@drawable/general_ic_report"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_suggestion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_suggestion"
+                        app:drawableEndCompat="@drawable/general_ic_chevron_right"
+                        app:drawableStartCompat="@drawable/general_ic_suggestion"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_rate"
+                        app:drawableEndCompat="@drawable/general_ic_chevron_right"
+                        app:drawableStartCompat="@drawable/general_ic_rate"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/line_gray" />
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:id="@+id/settings_textview_about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:focusable="true"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_9sdp"
+                        android:text="@string/settings_text_about"
+                        app:drawableEndCompat="@drawable/general_ic_chevron_right"
+                        app:drawableStartCompat="@drawable/general_ic_about"
+                        app:minumin_text_code="p_a_r"
+                        app:minumin_text_color="dark" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:background="@drawable/general_button_red"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/settings_text_reset"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

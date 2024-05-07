@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MinuminTextView">
+        <attr name="minumin_text_color" format="enum">
+            <enum name="light" value="0" />
+            <enum name="dark" value="1" />
+            <enum name="error" value="2" />
+        </attr>
+
+        <attr name="minumin_text_code" format="enum">
+            <enum name="h1" value="0" />
+            <enum name="h2" value="1" />
+            <enum name="h3" value="2" />
+
+            <enum name="h4_B" value="3" />
+            <enum name="h4_M" value="4" />
+
+            <enum name="h5_B" value="5" />
+            <enum name="h5_M" value="6" />
+
+            <enum name="h6_B" value="7" />
+            <enum name="h6_M" value="8" />
+
+            <enum name="h7_B" value="9" />
+            <enum name="h7_S" value="10" />
+            <enum name="h7_R" value="11" />
+
+            <enum name="p_w_i" value="12" />
+            <enum name="p_w_r" value="13" />
+            <enum name="p_w_s" value="14" />
+            <enum name="p_w_b" value="15" />
+
+            <enum name="p_a_i" value="16" />
+            <enum name="p_a_r" value="17" />
+            <enum name="p_a_s" value="18" />
+            <enum name="p_a_b" value="19" />
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="MinuminFormEditText">
+        <attr name="minumin_text_error" format="string" />
+        <attr name="minumin_text_hint" format="string" />
+        <attr name="minumin_text_unit" format="string" />
+        <attr name="minumin_show_error" format="boolean" />
+        <attr name="minumin_max_length" format="integer" />
+        <attr name="minumin_input_type" format="enum">
+            <enum name="none" value="0" />
+            <enum name="text" value="1" />
+            <enum name="textCapCharacters" value="2" />
+            <enum name="textCapWords" value="3" />
+            <enum name="textCapSentences" value="4" />
+            <enum name="textAutoCorrect" value="5" />
+            <enum name="textAutoComplete" value="6" />
+            <enum name="textMultiLine" value="7" />
+            <enum name="textImeMultiLine" value="8" />
+            <enum name="textNoSuggestions" value="9" />
+            <enum name="textUri" value="10" />
+            <enum name="textEmailAddress" value="11" />
+            <enum name="textEmailSubject" value="12" />
+            <enum name="textShortMessage" value="13" />
+            <enum name="textLongMessage" value="14" />
+            <enum name="textPersonName" value="15" />
+            <enum name="textPostalAddress" value="16" />
+            <enum name="textPassword" value="17" />
+            <enum name="textVisiblePassword" value="18" />
+            <enum name="textWebEditText" value="19" />
+            <enum name="textFilter" value="20" />
+            <enum name="textPhonetic" value="21" />
+            <enum name="textWebEmailAddress" value="22" />
+            <enum name="textWebPassword" value="23" />
+            <enum name="number" value="24" />
+            <enum name="numberSigned" value="25" />
+            <enum name="numberDecimal" value="26" />
+            <enum name="numberPassword" value="27" />
+            <enum name="phone" value="28" />
+            <enum name="datetime" value="29" />
+            <enum name="date" value="30" />
+            <enum name="time" value="31" />
+        </attr>
+    </declare-styleable>
+</resources>

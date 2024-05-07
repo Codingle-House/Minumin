@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option java_package = "id.co.minumin.datastore";
+option java_multiple_files = true;
+
+message UserSetting {
+  int32 weight = 1;
+  string gender = 2;
+  string wakeUpTime = 3;
+  string sleepTime = 4;
+  int32 waterNeeds = 5;
+  enum Navigation {
+    NONE = 0;
+    ON_BOARD = 1;
+    REGISTER = 2;
+    RESULT = 3;
+  }
+  Navigation navigation = 6;
+  enum Language {
+    ENGLISH = 0;
+    INDONESIA = 1;
+  }
+  Language language = 7;
+  enum WeatherCondition {
+    NORMAL = 0;
+    WINTER = 1;
+    WARM = 2;
+    HOT = 3;
+  }
+  WeatherCondition weatherCondition = 8;
+  enum PhysicalCondition {
+    STAY = 0;
+    ACTIVE = 1;
+    VERY_ACTIVE = 2;
+  }
+  PhysicalCondition physicalCondition = 9;
+  enum GlassSelection {
+    CUP_100 = 0;
+    CUP_150 = 1;
+    CUP_200 = 2;
+    CUP_300 = 3;
+    CUP_400 = 4;
+  }
+  GlassSelection glassSelection = 10;
+  bool isNotificationActive = 11;
+  bool isPro = 12;
+}

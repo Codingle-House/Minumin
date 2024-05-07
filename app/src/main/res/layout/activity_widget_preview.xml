@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/widgetpreview_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:navigationIcon="@drawable/general_ic_chevron_left"
+            app:title="@string/settings_text_widget"
+            app:titleTextAppearance="@style/ToolbarTextAppearance" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/widgetpreview_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+
+                    <id.co.minumin.uikit.MinuminTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/widgetpreview_text_description"
+                        app:minumin_text_code="p_a_r" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:cardBackgroundColor="@color/blue_primary"
+                app:cardElevation="@dimen/_1sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/widgetpreview_cardview_mascot"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:outlineAmbientShadowColor="@color/shadow_color"
+                        android:outlineSpotShadowColor="@color/shadow_color"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_50sdp"
+                        app:cardElevation="@dimen/_2sdp"
+                        tools:targetApi="p">
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="@dimen/_7sdp"
+                            android:src="@drawable/general_ic_mascot"
+                            app:backgroundTint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@id/widgetpreview_cardview_mascot"
+                        android:orientation="vertical">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/widgetpreview_textview_current_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:minumin_text_code="h4_B"
+                            app:minumin_text_color="light"
+                            tools:text="1500 ml" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/widgetpreview_textview_total_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="light"
+                            tools:text="2000 ml" />
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/widgetpreview_cardview_add_1"
+                        android:layout_width="@dimen/_33sdp"
+                        android:layout_height="@dimen/_33sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:outlineAmbientShadowColor="@color/shadow_color"
+                        android:outlineSpotShadowColor="@color/shadow_color"
+                        app:cardBackgroundColor="@color/blue_lights"
+                        app:cardCornerRadius="@dimen/_50sdp"
+                        app:cardElevation="@dimen/_2sdp"
+                        tools:targetApi="p">
+
+                        <ImageView
+                            android:layout_width="@dimen/_33sdp"
+                            android:layout_height="@dimen/_33sdp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="@dimen/_7sdp"
+                            android:src="@drawable/general_ic_add"
+                            app:backgroundTint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+
+                    <ImageView
+                        android:id="@+id/widgetpreview_imageview_mascot"
+                        android:layout_width="@dimen/_26sdp"
+                        android:layout_height="@dimen/_26sdp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/general_ic_mascot"
+                        app:backgroundTint="@color/white" />
+
+                    <LinearLayout
+                        android:id="@+id/widgetpreview_linear_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_toEndOf="@id/widgetpreview_imageview_mascot"
+                        android:orientation="vertical">
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/widgetpreview_textview_current_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:minumin_text_code="h4_B"
+                            app:minumin_text_color="dark"
+                            tools:text="1500 ml" />
+
+                        <id.co.minumin.uikit.MinuminTextView
+                            android:id="@+id/widgetpreview_textview_total_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:minumin_text_code="p_a_r"
+                            app:minumin_text_color="dark"
+                            tools:text="2000 ml" />
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/widgetpreview_cardview_add_2"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_alignParentEnd="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:outlineAmbientShadowColor="@color/shadow_color"
+                        android:outlineSpotShadowColor="@color/shadow_color"
+                        app:cardBackgroundColor="@color/green_card"
+                        app:cardCornerRadius="@dimen/_50sdp"
+                        app:cardElevation="@dimen/_2sdp"
+                        tools:targetApi="p">
+
+                        <ImageView
+                            android:layout_width="@dimen/_28sdp"
+                            android:layout_height="@dimen/_28sdp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="@dimen/_7sdp"
+                            android:src="@drawable/general_ic_add"
+                            app:backgroundTint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <ProgressBar
+                        android:id="@+id/widgetpreview_progresbar_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/widgetpreview_linear_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:progress="10"
+                        android:progressDrawable="@drawable/general_bg_progressbar" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

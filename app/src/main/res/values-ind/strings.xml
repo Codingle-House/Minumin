@@ -1,0 +1,169 @@
+<resources>
+    <string name="app_name">Minumin</string>
+
+    <string name="general_text_kilograms">Kilograms</string>
+    <string name="general_text_next">Lanjut</string>
+    <string name="general_text_understand">Mengerti</string>
+    <string name="general_text_ml_day">%s ml/hari</string>
+    <string name="general_text_unit_kg">%s kg</string>
+    <string name="general_text_choose">Pilih</string>
+    <string name="general_text_ml">ml</string>
+    <string name="general_placeholder_ml">%s ml</string>
+    <string name="general_text_time">Pukul %s</string>
+    <string name="general_text_chart_formatmarkerview">%1$s %2$s</string>
+    <string name="general_text_edit">Ubah</string>
+    <string name="general_text_delete">Hapus</string>
+    <string name="general_text_explore">Lihat</string>
+
+    <string name="splashscreen_text_motto">"\"Hidup sehat dengan cukup minum air putih\""</string>
+
+    <string name="onboarding_text_title">Halo Temanku</string>
+    <string name="onboarding_text_message">Perkenalkan aku adalah <b>Imin</b>, asisten pribadi kamu
+        yang akan mengingatkan kamu untuk hidup sehat dengan cukup meminum air putih.
+    </string>
+    <string name="onboarding_text_register_now">Daftar Sekarang</string>
+
+    <string name="register_text_title">Halo Temanku</string>
+    <string name="register_text_message">Mengisi data dibawah, bisa membantu <b>Imin</b> untuk mengatur
+        jadwal minum kamu loh.
+    </string>
+    <string name="register_text_gender">Jenis Kelamin</string>
+    <string name="register_text_man">Pria</string>
+    <string name="register_text_woman">Wanita</string>
+    <string name="register_error_gender">Jenis Kelamin tidak boleh kosong</string>
+    <string name="register_text_weight">Berat Badan</string>
+    <string name="register_text_weight_error">Berat badan tidak boleh kosong</string>
+    <string name="register_text_weight_hint">80</string>
+    <string name="register_text_sleeping_time">Waktu Bangun dan Tidur</string>
+    <string name="register_text_sleeping_error">Tidak boleh kosong</string>
+    <string name="register_text_sleeping_am">AM</string>
+    <string name="register_text_sleeping_pm">PM</string>
+    <string name="register_text_sleeping_hint">00:00</string>
+
+    <string name="progress_text_title">Mohon Tunggu Ya…</string>
+    <string name="progress_text_desc"><b>Imin</b> sedang memproses jadwal minum kamu, tidak lama kok :)</string>
+
+    <string name="result_text_title">Kebutuhan Air Putih :</string>
+    <string name="result_text_desc">Ayo penuhi kebutuhan air putih harianmu untuk mencapai hidup yang lebih sehat</string>
+
+    <string name="title_home">Beranda</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_settings">Pengaturan</string>
+
+    <string name="settings_title_reminder">Pengaturan Pengingat</string>
+    <string name="settings_text_reminder">Jadwal Pengingat</string>
+    <string name="settings_text_widget">Tambah Widget</string>
+    <string name="settings_title_general">Pengaturan Umum</string>
+    <string name="settings_text_remove_ads">Hapus Iklan</string>
+    <string name="settings_text_unit">Satuan</string>
+    <string name="settings_text_total">Jumlah Air</string>
+    <string name="settings_text_language">Bahasa</string>
+    <string name="settings_title_data">Data Pribadi</string>
+    <string name="settings_title_backup">Cadangkan dan Kembalikan</string>
+    <string name="settings_text_backup_googledrive">Cadangkan ke Google Drive</string>
+    <string name="settings_text_backup_local">Cadangkan ke HP Kamu</string>
+    <string name="settings_text_restore_googledrive">Pulihhan dari Google Drive</string>
+    <string name="settings_text_restore_local">Pulihkan data kamu</string>
+    <string name="settings_text_wakeup">Waktu Bangun Tidur</string>
+    <string name="settings_text_sleep">Waktu Tidur</string>
+    <string name="settings_text_reset">Hapus Ulang Data</string>
+    <string name="settings_title_other">Lainnya</string>
+    <string name="settings_text_report">Laporkan Masalah</string>
+    <string name="settings_text_suggestion">Kritik dan Saran</string>
+    <string name="settings_text_rate">Nilai Kami</string>
+    <string name="settings_text_about">Tentang Aplikasi</string>
+    <string name="settings_text_successdrive">Data anda berhasil dicadangkan di google drive dengan nama %s</string>
+
+    <string name="pro_text_message">Bayar satu kali, nikmati aplikasi tanpa iklan dan berbagai fitur unggulan lainnya</string>
+    <string name="pro_title_page">Peningkatan Pro</string>
+    <string name="pro_text_desc">Dapatkan berbagai kelebihan dengan peningkatan <b>pro</b></string>
+    <string name="pro_text_no_ads">Tanpa Iklan</string>
+    <string name="pro_text_history">Riwayat lebih dari 7 hari</string>
+    <string name="pro_text_widget">Widget untuk tindakan cepat</string>
+    <string name="pro_text_backup">Pencadangan data</string>
+    <string name="pro_text_update">Pembaharuan gratis seumur hidup</string>
+    <string name="pro_action_upgrade">Tingkatkan</string>
+    <string name="pro_action_recover">Pulihkan Pembelian</string>
+
+    <string name="home_text_message_red">Kamu perlu minum air</string>
+    <string name="home_text_message_orange">Ayo minum air lebih banyak</string>
+    <string name="home_text_message_done">Kebutuhan air tercukupi</string>
+
+    <string name="home_text_water_consumption">%s / %s ml</string>
+    <string name="home_text_changecup">Ganti Gelas</string>
+    <string name="home_title_tips">Tips Buat Kamu</string>
+    <string name="home_text_tips">Buat tubuhmu terus terhidrasi dengan cukup meminum air putih</string>
+    <string name="home_title_history">Riwayat Hari Ini</string>
+    <string name="home_text_item_drink">Kamu telah meminum air sebanyak %s</string>
+
+    <string name="state_title_empty">Ayo Minum Air Putih</string>
+    <string name="state_text_empty">Halo kamu belum minum air putih hari ini. Ayo jangan sampai lupa untuk meminum air putih ya.</string>
+
+    <string name="dialog_title_weather">Kondisi Cuaca</string>
+    <string name="dialog_title_physical">Aktivitas Fisik</string>
+
+    <string name="dialog_text_weather_hot">Panas</string>
+    <string name="dialog_text_weather_warm">Hangat</string>
+    <string name="dialog_text_weather_normal">Normal</string>
+    <string name="dialog_text_weather_winter">Dingin</string>
+
+    <string name="dialog_value_weather_hot">+412ml</string>
+    <string name="dialog_value_weather_warm">+247ml</string>
+    <string name="dialog_value_weather_normal">+0ml</string>
+    <string name="dialog_value_weather_winter">+165ml</string>
+
+    <string name="dialog_text_physical_extraactive">Sangat Aktif</string>
+    <string name="dialog_text_physical_active">Aktif</string>
+    <string name="dialog_text_physical_normal">Normal</string>
+
+    <string name="dialog_value_physical_extraactive">+495ml</string>
+    <string name="dialog_value_physical_active">+330ml</string>
+    <string name="dialog_value_physical_normal">+0ml</string>
+
+    <string name="dialog_title_cup_selection">Pilih Gelas</string>
+    <string name="dialog_title_gender_selection">Pilih Jenis Kelamin</string>
+    <string name="dialog_title_weight">Ubah Berat Badan</string>
+    <string name="dialog_title_water_consumption">Jumlah Air Harian</string>
+    <string name="dialog_hint_water_consumption">1200</string>
+    <string name="dialog_error_water_consumption">Jumlah air tidak boleh kosong</string>
+
+    <string name="dialog_text_language_indonesia">Bahasa Indonesia</string>
+    <string name="dialog_text_language_english">Bahasa Inggris</string>
+
+    <string name="dialog_text_metric_general">Sistem Metrik (kg, ml)</string>
+    <string name="dialog_text_metric_us">Sistem US (lf.oz, lb)</string>
+
+    <string name="history_placeholder_dayframe">%s Hari Terakhir</string>
+    <string name="history_text_total_water">Total Air \nDiminum</string>
+    <string name="history_text_average_water">Rerata Air \nper Hari</string>
+    <string name="history_title_achievement">Penyelesaian Mingguan</string>
+
+    <string name="notification_title">Jadwal Pengingat</string>
+    <string name="notification_text_message">Kami akan mengoptimalkan waktu pengingat berdasarkan jam produktif kamu</string>
+    <string name="notification_text_wakeupandsleep">Waktu bangun dan tidur</string>
+    <string name="notification_text_interval">Setiap satu jam</string>
+    <string name="notification_title_setting">Atur Notifikasi</string>
+    <string name="notification_text_status">Status Notifikasi</string>
+    <string name="notification_text_sound">Aktifkan Bunyi</string>
+    <string name="notification_text_vibrate">Aktifkan Getar</string>
+
+    <string name="notifdialog_title_custom">Ayo minum air</string>
+    <string name="notifdialog_text_custom">Buat tubuhmu terus terhidrasi dengan cukup meminum air putih</string>
+
+    <string name="notifdialog_title_reminder">Saatnya minum air !</string>
+    <string name="notifdialog_text_reminder">Sekarang jadwal kamu untuk minum air putih</string>
+
+    <string name="backupdialog_title_success">Data Berhasil Dicadangkan</string>
+    <string name="backupdialog_text_success">Data kamu berhasil dicadangkan dan sudah kami simpan di hp kamu.</string>
+
+    <string name="aboutus_text_description"><b>Minumin</b> merupakan aplikasi yang diciptakan untuk mengingatkan kamu untuk hidup lebih sehat dengan cukup meminum air putih. </string>
+    <string name="aboutus_text_copyright">Kami ucapkan terima kasih karena kami menggunakan beberapa vektor dari akun berikut :</string>
+
+    <string name="aboutus_text_freepik">Freepik</string>
+    <string name="aboutus_text_vectormarket">Vectors Market</string>
+    <string name="aboutus_text_bqln">Bqln</string>
+    <string name="aboutus_text_pixelperfect">Pixel Perfect</string>
+    <string name="aboutus_text_srip">Srip</string>
+
+    <string name="widgetpreview_text_description">Dengan menambahkan widget <b>minumin</b> pada halaman utama, kamu akan memperoleh akses cepat untuk menambah konsumsi air putih.</string>
+</resources>
