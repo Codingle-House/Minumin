@@ -15,14 +15,18 @@ import id.co.minumin.base.BaseFragment
 import id.co.minumin.core.DiffCallback
 import id.co.minumin.core.DividerItemDecoration
 import id.co.minumin.core.ext.getDrawableCompat
-import id.co.minumin.data.dto.*
+import id.co.minumin.data.dto.CupSelectionDto
 import id.co.minumin.data.dto.CupSelectionDto.CUP_100
 import id.co.minumin.data.dto.CupSelectionDto.CUP_150
 import id.co.minumin.data.dto.CupSelectionDto.CUP_200
 import id.co.minumin.data.dto.CupSelectionDto.CUP_300
 import id.co.minumin.data.dto.CupSelectionDto.CUP_400
+import id.co.minumin.data.dto.DrinkDto
+import id.co.minumin.data.dto.PhysicalActivitiesDto
 import id.co.minumin.data.dto.PhysicalActivitiesDto.ACTIVE
 import id.co.minumin.data.dto.PhysicalActivitiesDto.VERY_ACTIVE
+import id.co.minumin.data.dto.UserRegisterDto
+import id.co.minumin.data.dto.WeatherConditionDto
 import id.co.minumin.data.dto.WeatherConditionDto.HOT
 import id.co.minumin.data.dto.WeatherConditionDto.NORMAL
 import id.co.minumin.data.dto.WeatherConditionDto.WARM
@@ -37,7 +41,9 @@ import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.presentation.view.ProFeatureView
 import id.co.minumin.util.DateTimeUtil
 import id.co.minumin.util.DateTimeUtil.FULL_DATE_FORMAT
+import id.co.minumin.util.DateTimeUtil.convertDate
 import id.co.minumin.util.DateTimeUtil.getCurrentDateString
+import id.co.minumin.util.DateTimeUtil.getCurrentTime
 import id.co.minumin.util.NestedScrollViewOverScrollDecorAdapter
 import me.everything.android.ui.overscroll.VerticalOverScrollBounceEffectDecorator
 import java.util.*
@@ -88,44 +94,42 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         loadData()
     }
 
-    override fun observeViewModel() {
-        with(mainViewModel) {
-            observeLiveDataMerger().onResult { handleMergedLiveData(it) }
-            observeCupSelection().onResult { handleCupSelectionLiveData(it) }
-            observeWaterConsumption().onResult { handleDrinkListLiveData(it) }
-            observePurchaseStatus().onResult { handlePurchaseStatusLiveData(it) }
-        }
+    override fun observeViewModel() = with(mainViewModel) {
+        observeLiveDataMerger().onResult { handleMergedLiveData(it) }
+        observeCupSelection().onResult { handleCupSelectionLiveData(it) }
+        observeWaterConsumption().onResult { handleDrinkListLiveData(it) }
+        observePurchaseStatus().onResult { handlePurchaseStatusLiveData(it) }
     }
 
-    private fun initHeaderListener() {
-        binding.mainImageviewWeather.setOnClickListener {
+    private fun initHeaderListener() = with(binding) {
+        mainImageviewWeather.setOnClickListener {
             WeatherConditionDialog.newInstance(requireContext()).apply {
                 setListener { mainViewModel.updateWeatherCondition(it) }
                 show()
             }
         }
 
-        binding.mainImageviewActivities.setOnClickListener {
+        mainImageviewActivities.setOnClickListener {
             PhysicalActivitiesDialog.newInstance(requireContext()).apply {
                 setListener { mainViewModel.updatePhysicalCondition(it) }
                 show()
             }
         }
 
-        binding.mainTextviewCupSelection.setOnClickListener {
+        mainTextviewCupSelection.setOnClickListener {
             CupSelectionDialog.newInstance(requireContext()).apply {
                 setListener { mainViewModel.updateCupSelection(it) }
                 show()
             }
         }
 
-        binding.mainImageviewCup.setOnClickListener {
+        mainImageviewCup.setOnClickListener {
             val id = Calendar.getInstance().timeInMillis
             mainViewModel.drinkWater(
                 DrinkDto(
                     id = id,
-                    date = DateTimeUtil.convertDate(currentDate).orEmpty(),
-                    time = DateTimeUtil.getCurrentTime(),
+                    date = convertDate(currentDate).orEmpty(),
+                    time = getCurrentTime(),
                     consumption = selectedCupCapacity
                 )
             )
@@ -265,7 +269,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         with(binding.mainProgress) {
             progress = percentage.toInt()
             setListener {
-                binding.mainTextviewPercentage.text = "${it.animatedValue.toString().toDouble().toInt()}%"
+                binding.mainTextviewPercentage.text =
+                    "${it.animatedValue.toString().toDouble().toInt()}%"
             }
         }
         binding.mainTextviewConsumption.text = getString(

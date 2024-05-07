@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsetsController
+import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -44,14 +45,12 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     abstract fun observeViewModel()
 
     protected fun <T> LiveData<T>.onResult(action: (T) -> Unit) {
-        observe(this@BaseFragment, Observer { data -> data?.let(action) })
+        observe(this@BaseFragment) { data -> data?.let(action) }
     }
 
     protected fun changeStatusBarColor(@ColorRes color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity?.getColorCompat(color)?.let { color ->
-                activity?.window?.statusBarColor = color
-            }
+        activity?.getColorCompat(color)?.let {
+            activity?.window?.statusBarColor = it
         }
     }
 
@@ -60,15 +59,15 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             when {
                 isLightStatusBar -> {
                     activity?.window?.insetsController?.setSystemBarsAppearance(
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                        APPEARANCE_LIGHT_STATUS_BARS,
+                        APPEARANCE_LIGHT_STATUS_BARS
                     )
                 }
 
                 else -> {
                     activity?.window?.insetsController?.setSystemBarsAppearance(
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS.inv(),
-                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS.inv()
+                        APPEARANCE_LIGHT_STATUS_BARS.inv(),
+                        APPEARANCE_LIGHT_STATUS_BARS.inv()
                     )
                 }
             }

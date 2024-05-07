@@ -74,32 +74,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     private val settingsViewModel: SettingsViewModel by viewModels()
 
     @Inject
-    lateinit var firebaseDatabaseUtil: FirebaseDatabaseUtil
-
-    @Inject
     lateinit var appDatabase: AppDatabase
 
     @Inject
     lateinit var localeHelper: LocaleHelper
-
-    private val googleSignInResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                result.data?.let {
-                    handleSignInResult(it) { drive ->
-                        when (selectedAction) {
-                            MinuminConstant.ACTION_BACKUP -> {
-                                handleUploadToGoogleDrive(drive)
-                            }
-
-                            else -> {
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
     private val filePickerResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -319,7 +297,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
         binding.settingsTextviewSuggestion.setOnClickListener {
             UserSuggestionDialog(requireContext()).apply {
                 setListener {
-                    firebaseDatabaseUtil.setSuggestionValue(it)
+
                 }
                 show()
             }

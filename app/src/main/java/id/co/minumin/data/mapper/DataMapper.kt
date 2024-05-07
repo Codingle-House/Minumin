@@ -5,6 +5,7 @@ import id.co.minumin.data.local.entity.BackupUserSettingEntity
 import id.co.minumin.data.local.entity.DrinkEntity
 import id.co.minumin.datastore.UserSetting
 import id.co.minumin.util.DateTimeUtil
+import id.co.minumin.util.DateTimeUtil.convertDate
 
 /**
  * Created by pertadima on 01,February,2021
@@ -13,11 +14,11 @@ import id.co.minumin.util.DateTimeUtil
 object DataMapper {
 
     fun convertToNavigationDto(navigation: UserSetting.Navigation): UserNavigationDto {
-        return UserNavigationDto.values()[navigation.ordinal]
+        return UserNavigationDto.entries[navigation.ordinal]
     }
 
     fun convertNavigationDtoToProto(navigation: UserNavigationDto): UserSetting.Navigation {
-        return UserSetting.Navigation.values()[navigation.ordinal]
+        return UserSetting.Navigation.entries[navigation.ordinal]
     }
 
     fun convertUserRegisterDto(userSetting: UserSetting): UserRegisterDto {
@@ -32,35 +33,35 @@ object DataMapper {
     }
 
     fun convertToWeatherDto(weather: UserSetting.WeatherCondition): WeatherConditionDto {
-        return WeatherConditionDto.values()[weather.ordinal]
+        return WeatherConditionDto.entries[weather.ordinal]
     }
 
 
     fun convertWeatherDtoToProto(weather: WeatherConditionDto): UserSetting.WeatherCondition {
-        return UserSetting.WeatherCondition.values()[weather.ordinal]
+        return UserSetting.WeatherCondition.entries[weather.ordinal]
     }
 
     fun convertToPhysycalDto(weather: UserSetting.PhysicalCondition): PhysicalActivitiesDto {
-        return PhysicalActivitiesDto.values()[weather.ordinal]
+        return PhysicalActivitiesDto.entries[weather.ordinal]
     }
 
 
     fun convertPhysicalDtoToProto(weather: PhysicalActivitiesDto): UserSetting.PhysicalCondition {
-        return UserSetting.PhysicalCondition.values()[weather.ordinal]
+        return UserSetting.PhysicalCondition.entries[weather.ordinal]
     }
 
     fun convertToCupDto(cup: UserSetting.GlassSelection): CupSelectionDto {
-        return CupSelectionDto.values()[cup.ordinal]
+        return CupSelectionDto.entries[cup.ordinal]
     }
 
     fun convertCupDtoToProto(cup: CupSelectionDto): UserSetting.GlassSelection {
-        return UserSetting.GlassSelection.values()[cup.ordinal]
+        return UserSetting.GlassSelection.entries[cup.ordinal]
     }
 
     fun convertDrinkDtoToEntity(drinkDto: DrinkDto): DrinkEntity {
         return DrinkEntity(
             id = drinkDto.id,
-            date = DateTimeUtil.convertDate(drinkDto.date),
+            date = convertDate(drinkDto.date),
             time = drinkDto.time,
             consumption = drinkDto.consumption,
             isDeleted = drinkDto.isDeleted
@@ -70,7 +71,7 @@ object DataMapper {
     fun convertDrinkEntityToDto(drinkEntity: DrinkEntity): DrinkDto {
         return DrinkDto(
             id = drinkEntity.id,
-            date = DateTimeUtil.convertDate(drinkEntity.date?.time ?: 0L).orEmpty(),
+            date = convertDate(drinkEntity.date?.time ?: 0L).orEmpty(),
             time = drinkEntity.time,
             consumption = drinkEntity.consumption,
             isDeleted = drinkEntity.isDeleted
@@ -78,11 +79,11 @@ object DataMapper {
     }
 
     fun convertToLanguageDto(language: UserSetting.Language): LanguageDto {
-        return LanguageDto.values()[language.ordinal]
+        return LanguageDto.entries[language.ordinal]
     }
 
     fun convertLanguageDtoToProto(language: LanguageDto): UserSetting.Language {
-        return UserSetting.Language.values()[language.ordinal]
+        return UserSetting.Language.entries[language.ordinal]
     }
 
     fun convertBackupUserSettingDto(userSetting: UserSetting): BackupUserSettingDto {

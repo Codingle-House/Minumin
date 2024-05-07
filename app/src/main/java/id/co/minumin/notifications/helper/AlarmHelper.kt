@@ -2,6 +2,8 @@ package id.co.minumin.notifications.helper
 
 import android.app.AlarmManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -30,7 +32,7 @@ class AlarmHelper {
             context,
             0,
             alarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
         )
 
         Log.i("AlarmHelper", "Setting Alarm Interval to: $notificationFrequency minutes")
@@ -61,7 +63,7 @@ class AlarmHelper {
             context,
             0,
             alarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
         )
         alarmManager?.cancel(pendingAlarmIntent)
 
@@ -84,7 +86,7 @@ class AlarmHelper {
         return PendingIntent.getBroadcast(
             context, 0,
             alarmIntent,
-            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_NO_CREATE or FLAG_IMMUTABLE
         ) != null
     }
 

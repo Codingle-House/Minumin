@@ -97,7 +97,7 @@ class NotificationHelper @Inject constructor(
                 context,
                 99,
                 notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
 
 
