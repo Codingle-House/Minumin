@@ -15,7 +15,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          java-version: '11'  # Specify the desired Java version here
 
       - name: Run Detekt
         run: ./gradlew detekt
