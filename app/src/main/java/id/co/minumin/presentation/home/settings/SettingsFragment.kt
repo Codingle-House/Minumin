@@ -131,7 +131,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             observeBackupFileResult().onResult { handleBackupFileLiveData(it) }
             observeRestoreSuccess().onResult { restartApp() }
             observeLanguageSwitchDto().onResult { handleLanguageSwitchLiveData(it) }
-            observePurchaseStatus().onResult { handlePurchaseStatusLiveData(it) }
         }
     }
 
@@ -264,7 +263,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
         with(settingsViewModel) {
             getUserData()
             getLanguageSelection()
-            getPurchaseStatus()
         }
     }
 

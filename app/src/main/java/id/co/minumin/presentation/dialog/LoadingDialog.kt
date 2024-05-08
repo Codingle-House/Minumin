@@ -47,13 +47,8 @@ class LoadingDialog(context: Context) : MinuminDialog<DialogLoadingBinding>(cont
     companion object {
 
         private const val BOUNCE_TRANSLATION_Y = "translationY"
-
-        private const val BOUNCE_REPEAT_COUNT = 4
         private const val BOUNCE_ANIMATION_DURATION = 800L
         private const val BOUNCE_ANIMATION_DELAY = 0L
-
-        private const val FADE_ANIMATION_DELAY = 300L
-        private const val ACTIVITY_TRANSITION_DELAY = 800L
 
         private const val POW = 2.0
         private const val TRANSLATION_Y = 25F

@@ -12,7 +12,9 @@ import id.co.minumin.notifications.helper.NotificationHelper
 import id.co.minumin.presentation.home.history.HistoryFragment
 import id.co.minumin.presentation.home.main.MainFragment
 import id.co.minumin.presentation.home.settings.SettingsFragment
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -75,8 +77,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             ).commit()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun showNotification() {
-        GlobalScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(IO) {
             val nBuilder = notificationHelper.getNotificationCustom(true)
             notificationHelper.notify(1, nBuilder)
         }

@@ -111,7 +111,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     private var selectedDayFrame: Int = SEVEN_DAYS
     private var selectedDate: Date? = null
     private var userWaterNeed: Int = 0
-    private var purchaseStatus: Boolean = false
 
     override fun onViewReady() {
         changeStatusBarTextColor(true)
@@ -129,7 +128,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             observeWaterConsumption().onResult { list -> handleDrinkListLiveData(list) }
             observeWaterConsumptionInBetween().onResult { handleDrinkListLiveDataByDate(it) }
             observeUserCondition().onResult { userWaterNeed = it.waterNeeds }
-            observePurchaseStatus().onResult { handlePurchaseStatusLiveData(it) }
         }
     }
 
@@ -180,17 +178,15 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
 
         binding.historyImageviewRight.setOnClickListener {
             if (selectedDayFrame != THIRTY_DAYS) {
-                checkPurchaseStatus({
-                    selectedDayFrame = THIRTY_DAYS
-                    binding.historyTextviewDayframe.text =
-                        getString(
-                            R.string.history_placeholder_dayframe,
-                            selectedDayFrame.toString()
-                        )
-                    binding.historyImageviewLeft.changeIconColor(R.color.white)
-                    binding.historyImageviewRight.changeIconColor(R.color.blue_inactive)
-                    historyViewModel.getDrinkWaterBetweenDate(thirtyDaysAgo, todayDate)
-                })
+                selectedDayFrame = THIRTY_DAYS
+                binding.historyTextviewDayframe.text =
+                    getString(
+                        R.string.history_placeholder_dayframe,
+                        selectedDayFrame.toString()
+                    )
+                binding.historyImageviewLeft.changeIconColor(R.color.white)
+                binding.historyImageviewRight.changeIconColor(R.color.blue_inactive)
+                historyViewModel.getDrinkWaterBetweenDate(thirtyDaysAgo, todayDate)
             }
         }
     }
@@ -301,15 +297,10 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
                 val daysDifferent = DAYS.convert(diff, MILLISECONDS)
 
                 if (daysDifferent > 0) {
-                    checkPurchaseStatus({
-                        if (isSelected) {
-                            selectedDate = date
-                            historyViewModel.getDrinkWater(selectedDate ?: Date())
-                        }
-                    }, {
-                        binding.historyPlaceholder.root.isGone = false
-                        binding.historyRecyclerviewDrink.isGone = true
-                    })
+                    if (isSelected) {
+                        selectedDate = date
+                        historyViewModel.getDrinkWater(selectedDate ?: Date())
+                    }
                 } else {
                     if (isSelected) {
                         selectedDate = date
@@ -417,41 +408,13 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         }
     }
 
-    private fun handlePurchaseStatusLiveData(status: Boolean) {
-        purchaseStatus = status
-    }
-
-    private fun checkPurchaseStatus(
-        onPurchase: () -> Unit,
-        onError: () -> Unit = kotlin.run { {} }
-    ) {
-        if (purchaseStatus) {
-            onPurchase.invoke()
-        } else {
-            onError.invoke()
-            val intent = Intent(context, ProActivity::class.java)
-            startActivity(intent)
-            activity?.overridePendingTransition(
-                R.anim.anim_fade_in,
-                R.anim.anim_fade_out
-            )
-        }
-    }
-
-    override fun onResume() {
-        historyViewModel.getPurchaseStatus()
-        super.onResume()
-    }
-
     companion object {
         private const val ANIMATION_DURATION = 1500
         private const val DEFAULT_TEXT_SIZE = 10F
         private const val DEFAULT_BAR_WIDTH = 0.7F
         private const val MIN_CHART_VALUE = 0F
-        private const val SPAN_COUNT = 2
         private const val CURRENT_CHART_DATE_FORMAT = "yyyy-MM-dd"
         private const val DESIRED_CHART_FATE_FORMAT = "dd/MM"
         private const val LAST_DATE = 365
-        private const val ADMOB_DELAY = 0L
     }
 }

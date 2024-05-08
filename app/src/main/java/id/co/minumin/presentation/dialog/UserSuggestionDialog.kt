@@ -2,7 +2,6 @@ package id.co.minumin.presentation.dialog
 
 import android.content.Context
 import android.view.LayoutInflater
-import id.co.minumin.databinding.DialogPhysicalActivitiesBinding
 import id.co.minumin.databinding.DialogUserSuggestionBinding
 import id.co.minumin.uikit.MinuminDialog
 

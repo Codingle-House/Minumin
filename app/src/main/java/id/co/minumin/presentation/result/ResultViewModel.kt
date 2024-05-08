@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.co.minumin.data.dto.UserNavigationDto
+import id.co.minumin.data.dto.UserNavigationDto.RESULT
 import id.co.minumin.data.preference.UserPreferenceManager
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ class ResultViewModel @Inject constructor(
 
     private fun updateUserNavigation() {
         viewModelScope.launch {
-            userPreferenceManager.updateUserNavigation(UserNavigationDto.RESULT)
+            userPreferenceManager.updateUserNavigation(RESULT)
         }
     }
 }

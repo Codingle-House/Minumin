@@ -10,7 +10,6 @@ import id.co.minumin.data.dto.UserRegisterDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
 import id.co.minumin.util.SingleLiveEvent
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -33,9 +32,6 @@ class HistoryViewModel @Inject constructor(
 
     private val userConditionDto = MutableLiveData<UserRegisterDto>()
     fun observeUserCondition(): LiveData<UserRegisterDto> = userConditionDto
-
-    private val purchaseStatus= SingleLiveEvent<Boolean>()
-    fun observePurchaseStatus(): LiveData<Boolean> = purchaseStatus
 
     init {
         getData()
@@ -65,12 +61,6 @@ class HistoryViewModel @Inject constructor(
     private fun getData() = viewModelScope.launch {
         userPreferenceManager.getUserRegisterData().collect {
             userConditionDto.postValue(it)
-        }
-    }
-
-    fun getPurchaseStatus() = viewModelScope.launch {
-        userPreferenceManager.getPurchaseStatus().collect {
-            purchaseStatus.postValue(it)
         }
     }
 }

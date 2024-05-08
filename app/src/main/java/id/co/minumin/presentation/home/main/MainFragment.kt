@@ -39,9 +39,9 @@ import id.co.minumin.presentation.dialog.WeatherConditionDialog
 import id.co.minumin.presentation.home.adapter.DrinkAdapter
 import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.presentation.view.ProFeatureView
-import id.co.minumin.util.DateTimeUtil
 import id.co.minumin.util.DateTimeUtil.FULL_DATE_FORMAT
 import id.co.minumin.util.DateTimeUtil.convertDate
+import id.co.minumin.util.DateTimeUtil.getCurrentDate
 import id.co.minumin.util.DateTimeUtil.getCurrentDateString
 import id.co.minumin.util.DateTimeUtil.getCurrentTime
 import id.co.minumin.util.NestedScrollViewOverScrollDecorAdapter
@@ -65,9 +65,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     @Inject
     lateinit var diffCallback: DiffCallback
 
-    private val currentDate by lazy {
-        DateTimeUtil.getCurrentDate()
-    }
+    private val currentDate by lazy { getCurrentDate() }
 
     private val drinkAdapter by lazy {
         DrinkAdapter(
@@ -98,7 +96,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         observeLiveDataMerger().onResult { handleMergedLiveData(it) }
         observeCupSelection().onResult { handleCupSelectionLiveData(it) }
         observeWaterConsumption().onResult { handleDrinkListLiveData(it) }
-        observePurchaseStatus().onResult { handlePurchaseStatusLiveData(it) }
     }
 
     private fun initHeaderListener() = with(binding) {
@@ -321,14 +318,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
-    override fun onResume() {
-        mainViewModel.getPurchaseStatus()
-        super.onResume()
-    }
-
     companion object {
         private const val MAX_PERCENTAGE = 100
-        private const val INCREMENT_ANIMATION = 500L
-        private const val ADMOB_DELAY = 0L
     }
 }

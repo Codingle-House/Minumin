@@ -10,7 +10,6 @@ import id.co.minumin.data.dto.UserRegisterDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
 import id.co.minumin.util.SingleLiveEvent
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,9 +37,6 @@ class SettingsViewModel @Inject constructor(
 
     private val languageSwitchDto = SingleLiveEvent<LanguageDto>()
     fun observeLanguageSwitchDto(): LiveData<LanguageDto> = languageSwitchDto
-
-    private val purchaseStatus= SingleLiveEvent<Boolean>()
-    fun observePurchaseStatus(): LiveData<Boolean> = purchaseStatus
 
     fun getUserData() = viewModelScope.launch {
         userPreferenceManager.getUserRegisterData().collect {
@@ -78,11 +74,5 @@ class SettingsViewModel @Inject constructor(
         val backUpData = repository.getBackupData().first()
         userPreferenceManager.restoreUserSetting(backUpData)
         restoreSuccess.postValue(true)
-    }
-
-    fun getPurchaseStatus() = viewModelScope.launch {
-        userPreferenceManager.getPurchaseStatus().collect {
-            purchaseStatus.postValue(it)
-        }
     }
 }
