@@ -45,9 +45,7 @@ class SplashscreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     @Inject
     lateinit var localeHelper: LocaleHelper
 
-    override fun onViewCreated() {
-
-    }
+    override fun onViewCreated() = Unit
 
     override fun onViewModelObserver() {
         with(splashScreenViewModel) {

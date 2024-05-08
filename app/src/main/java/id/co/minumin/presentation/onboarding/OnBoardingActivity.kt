@@ -32,9 +32,7 @@ class OnBoardingActivity : BaseActivity<ActivityOnboardingBinding>() {
         setupActionListener()
     }
 
-    override fun onViewModelObserver() {
-
-    }
+    override fun onViewModelObserver() = Unit
 
     private fun setupMicroInteraction() {
         binding.onboardingButtonRegister.animate().alpha(HIDE_VIEW).duration = 0L

@@ -21,4 +21,38 @@ object MinuminConstant {
 
     const val BACKUP_DB_NAME = "backupMinuminDb-%s.txt"
     const val SECRET_KEY = "e2561b314f55f1777d55d779a8af57e0"
+    const val NOTIFICATION_FREQUENCY = 60L
+
+    object CupSize {
+        const val SIZE_100 = 100
+        const val SIZE_150 = 150
+        const val SIZE_200 = 200
+        const val SIZE_300 = 300
+        const val SIZE_400 = 400
+    }
+
+    object PhysicalActivities {
+        const val ACTIVITY_NORMAL = 0
+        const val ACTIVITY_ACTIVE = 330
+        const val ACTIVITY_VERY_ACTIVE = 495
+    }
+
+    object WeatherConditions {
+        const val WEATHER_NORMAL = 0
+        const val WEATHER_WINTER = 165
+        const val WEATHER_WARM = 247
+        const val WEATHER_HOT = 412
+    }
+
+    object Time {
+        const val MILLIS = 1000
+        const val SECONDS = 60
+        const val MINUTES = 60
+        const val HOURS = 24
+    }
+
+    object ANGLE {
+        const val ANGLE_90 = 90
+        const val ANGLE_360 = 360
+    }
 }

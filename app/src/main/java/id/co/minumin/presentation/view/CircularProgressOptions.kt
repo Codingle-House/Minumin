@@ -1,6 +1,9 @@
 package id.co.minumin.presentation.view
 
 import android.graphics.Color
+import android.graphics.Color.BLUE
+import id.co.minumin.const.MinuminConstant.ANGLE.ANGLE_90
+import id.co.minumin.presentation.view.CircularProgressBar.Companion.LINEAR
 
 /**
  * Created by pertadima on 11,February,2021
@@ -26,7 +29,7 @@ internal class CircularProgressOptions {
             }
         }
 
-    var progressColor = Color.BLUE
+    var progressColor = BLUE
     var progressWidth = 0f
         set(value) {
             if (value < 0) throw IllegalArgumentException("Progress Width can't be negative")
@@ -37,8 +40,9 @@ internal class CircularProgressOptions {
 
     var progressBackgroundWidth = 0f
         set(value) {
-            if (value < 0) throw IllegalArgumentException("Progress Background Width can't be negative")
-            else {
+            if (value < 0) {
+                throw IllegalArgumentException("Progress Background Width can't be negative")
+            } else {
                 field = value
             }
         }
@@ -53,9 +57,9 @@ internal class CircularProgressOptions {
 
     var startAngle = 0
         set(value) {
-            field = value - 90
+            field = value - ANGLE_90
         }
-        get() = field + 90
+        get() = field + ANGLE_90
 
 
     var enableBackgroundDashEffect = false
@@ -74,9 +78,9 @@ internal class CircularProgressOptions {
             else field = value
         }
 
-    var dotColor = Color.BLUE
+    var dotColor = BLUE
 
-    var dashLineLength = 8f
+    var dashLineLength = DASH_LINE_LENGTH
         set(value) {
             if (value < 0) throw IllegalArgumentException("Dash Line Length can't be negative")
             else field = value
@@ -88,7 +92,7 @@ internal class CircularProgressOptions {
             else field = value
         }
 
-    var interpolator = CircularProgressBar.LINEAR
+    var interpolator = LINEAR
         set(value) {
             if (value == 0 || value == 1 || value == 2) field = value
             else throw IllegalArgumentException("Invalid Interpolator")
@@ -102,9 +106,18 @@ internal class CircularProgressOptions {
 
     var fadeRepeatCount = 0
 
-    var minFadeAlpha = 85
+    var minFadeAlpha = MIN_FADE_ALPHA
         set(value) {
-            if (value < 0 || value > 255) throw IllegalArgumentException("Alpha value should be in range of 0 to 255 inclusive")
-            else field = value
+            if (value < 0 || value > MAX_ALPHA) {
+                throw IllegalArgumentException(
+                    "Alpha value should be in range of 0 to 255 inclusive"
+                )
+            } else field = value
         }
+
+    companion object {
+        private const val MIN_FADE_ALPHA = 85
+        private const val MAX_ALPHA = 255
+        private const val DASH_LINE_LENGTH = 8
+    }
 }

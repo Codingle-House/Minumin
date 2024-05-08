@@ -145,10 +145,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             setListener { action ->
                 when (action) {
                     Click -> {
-                        val intent = Intent(
-                            context,
-                            ProActivity::class.java
-                        )
+                        val intent = Intent(context, ProActivity::class.java)
                         startActivity(intent)
                         activity?.overridePendingTransition(
                             R.anim.anim_fade_in,
@@ -208,7 +205,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         with(binding.historyRecyclerviewAchievement) {
             adapter = achievementAdapter
             layoutManager =
-                GridLayoutManager(requireContext(), 7, VERTICAL, false)
+                GridLayoutManager(requireContext(), SPAN_COUNT, VERTICAL, false)
         }
     }
 
@@ -240,7 +237,8 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
                 override fun getFormattedValue(value: Float): String {
                     return convertDateFormat(
                         CURRENT_CHART_DATE_FORMAT,
-                        if (waterConsumptionListDto.size < value) value.toString() else waterConsumptionListDto[value.toInt()].date,
+                        if (waterConsumptionListDto.size < value) value.toString()
+                        else waterConsumptionListDto[value.toInt()].date,
                         DESIRED_CHART_FATE_FORMAT
                     )
                 }
@@ -416,5 +414,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         private const val CURRENT_CHART_DATE_FORMAT = "yyyy-MM-dd"
         private const val DESIRED_CHART_FATE_FORMAT = "dd/MM"
         private const val LAST_DATE = 365
+        private const val SPAN_COUNT = 7
     }
 }

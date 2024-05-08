@@ -3,6 +3,7 @@ package id.co.minumin.util
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.Calendar.DAY_OF_MONTH
 
 /**
  * Created by pertadima on 11,February,2021
@@ -67,9 +68,9 @@ object DateTimeUtil {
         calendar.firstDayOfWeek = Calendar.MONDAY
         calendar[Calendar.DAY_OF_WEEK] = Calendar.MONDAY
 
-        for (i in 0..6) {
+        for (i in 0 until SEVEN_DAYS) {
             list.add(calendar.time)
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
+            calendar.add(DAY_OF_MONTH, 1)
         }
         return list
     }

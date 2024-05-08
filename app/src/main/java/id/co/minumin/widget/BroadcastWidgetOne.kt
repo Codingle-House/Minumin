@@ -18,7 +18,6 @@ import id.co.minumin.util.DateTimeUtil.getCurrentDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.*
@@ -70,7 +69,7 @@ class BroadcastWidgetOne : AppWidgetProvider() {
                     val contentIntent =
                         PendingIntent.getActivity(
                             context,
-                            99,
+                            REQUEST_CODE,
                             pendingIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT
                         )
@@ -178,5 +177,6 @@ class BroadcastWidgetOne : AppWidgetProvider() {
 
     companion object {
         private const val ACTION_ADD = "ACTION_ADD"
+        private const val REQUEST_CODE = 99
     }
 }

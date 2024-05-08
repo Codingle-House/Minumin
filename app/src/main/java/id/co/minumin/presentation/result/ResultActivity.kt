@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseActivity
+import id.co.minumin.const.MinuminConstant.NOTIFICATION_FREQUENCY
 import id.co.minumin.databinding.ActivityResultBinding
 import id.co.minumin.notifications.helper.AlarmHelper
 import id.co.minumin.presentation.home.HomeActivity
@@ -79,7 +80,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>() {
     private fun setupAlarm() {
         with(alarmHelper) {
             cancelAlarm(this@ResultActivity)
-            setAlarm(this@ResultActivity, 60)
+            setAlarm(this@ResultActivity, NOTIFICATION_FREQUENCY)
         }
     }
 

@@ -1,11 +1,17 @@
 package id.co.minumin.presentation.widgetpreview
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.co.minumin.data.dto.*
+import id.co.minumin.data.dto.DrinkDto
+import id.co.minumin.data.dto.PhysicalActivitiesDto
+import id.co.minumin.data.dto.UserRegisterDto
+import id.co.minumin.data.dto.WeatherConditionDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.*
@@ -43,7 +49,7 @@ class WidgetPreviewViewModel @Inject constructor(
                 Pair(weather, user)
             }.combine(physicalConditionFlow) { params1, params2 ->
                 Triple(params1.first, params1.second, params2)
-            }.collect { it ->
+            }.collect {
                 weatherCondition.postValue(it.first)
                 userConditionDto.postValue(it.second)
                 physicalActivitiesDto.postValue(it.third)

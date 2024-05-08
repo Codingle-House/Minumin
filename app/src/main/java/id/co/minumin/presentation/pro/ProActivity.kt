@@ -31,14 +31,10 @@ class ProActivity : BaseActivity<ActivityProBinding>() {
         initUi()
     }
 
-    override fun onViewModelObserver() {
+    override fun onViewModelObserver() = Unit
 
-    }
-
-    private fun setupToolbar() {
-        binding.proToolbar.setOnClickListener {
-            finish()
-        }
+    private fun setupToolbar() = binding.proToolbar.setOnClickListener {
+        finish()
     }
 
     private fun initUi() {

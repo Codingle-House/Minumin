@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseFragment
+import id.co.minumin.const.MinuminConstant.Time.MILLIS
 import id.co.minumin.core.DiffCallback
 import id.co.minumin.core.DividerItemDecoration
 import id.co.minumin.core.ext.getDrawableCompat
@@ -249,17 +250,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         calculatePersentage()
     }
 
-    private fun handlePurchaseStatusLiveData(status: Boolean) {
-
-    }
-
     @SuppressLint("SetTextI18n")
     private fun calculatePersentage() {
         if (loadingDialog.isShowing) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                loadingDialog.dismiss()
-            }, 1000)
-
+            Handler(Looper.getMainLooper()).postDelayed(
+                { loadingDialog.dismiss() },
+                MILLIS.toLong()
+            )
         }
         val percentage =
             currentWaterConsumption.toDouble() / totalWaterConsumption.toDouble() * MAX_PERCENTAGE
@@ -282,7 +279,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     background = context.getDrawableCompat(R.drawable.home_bg_message_done)
                 }
 
-                percentage.toInt() >= 40 -> {
+                percentage.toInt() >= MEDIAN_PERCENTAGE -> {
                     text = context.getString(R.string.home_text_message_orange)
                     background = context.getDrawableCompat(R.drawable.home_bg_message_orange)
                 }
@@ -320,5 +317,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     companion object {
         private const val MAX_PERCENTAGE = 100
+        private const val MEDIAN_PERCENTAGE = 40
     }
 }

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.provider.DocumentsContract
-import android.provider.OpenableColumns
+import android.provider.OpenableColumns.DISPLAY_NAME
 import android.util.Log
 import java.io.File
 import java.io.FileOutputStream
@@ -23,13 +23,8 @@ internal object DriveFileUtil {
         return ""
     }
 
-    fun isGoogleDriveUri(uri: Uri): Boolean {
-        return "com.google.android.apps.docs.storage" == uri.authority || "com.google.android.apps.docs.storage.legacy" == uri.authority
-    }
-
-    private fun isMediaDocument(uri: Uri): Boolean {
-        return "com.android.providers.media.documents" == uri.authority
-    }
+    fun isGoogleDriveUri(uri: Uri) = "com.google.android.apps.docs.storage" == uri.authority ||
+            "com.google.android.apps.docs.storage.legacy" == uri.authority
 
     @SuppressLint("Recycle")
     private fun getDriveFilePath(
@@ -42,18 +37,16 @@ internal object DriveFileUtil {
          *     * move to the first row in the Cursor, get the data,
          *     * and display it.
          * */
-        val nameIndex = returnCursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-        val sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE)
+        val nameIndex = returnCursor!!.getColumnIndex(DISPLAY_NAME)
         returnCursor.moveToFirst()
         val name = returnCursor.getString(nameIndex)
-        val size = java.lang.Long.toString(returnCursor.getLong(sizeIndex))
         val file = File(context.cacheDir, name)
         try {
             val inputStream =
                 context.contentResolver.openInputStream(uri)
             val outputStream = FileOutputStream(file)
             var read = 0
-            val maxBufferSize = 1 * 1024 * 1024
+            val maxBufferSize = 1 * BYTE_ARRAY * BYTE_ARRAY
             val bytesAvailable = inputStream!!.available()
 
             //int bufferSize = 1024;
@@ -72,4 +65,6 @@ internal object DriveFileUtil {
         }
         return file.path
     }
+
+    private const val BYTE_ARRAY = 1024
 }

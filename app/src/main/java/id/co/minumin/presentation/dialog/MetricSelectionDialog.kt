@@ -15,9 +15,7 @@ class MetricSelectionDialog(context: Context) :
     override val bindingInflater: (LayoutInflater) -> DialogMetricSelectionBinding
         get() = DialogMetricSelectionBinding::inflate
 
-    override fun onCreateDialog() {
-
-    }
+    override fun onCreateDialog() = Unit
 
     companion object {
         fun newInstance(context: Context) = MetricSelectionDialog(context)

@@ -72,4 +72,5 @@ object AppModule {
     @Singleton
     @Provides
     fun providesLocalHelper() = LocaleHelper()
+
 }

@@ -1,26 +1,34 @@
 package id.co.minumin.presentation.home.settings
 
-import android.Manifest
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DownloadManager
+import android.app.DownloadManager.ACTION_VIEW_DOWNLOADS
 import android.app.TimePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
+import android.content.Intent.ACTION_VIEW
+import android.content.Intent.CATEGORY_OPENABLE
 import android.net.Uri
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
-import com.google.api.services.drive.Drive
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseFragment
 import id.co.minumin.const.MinuminConstant
+import id.co.minumin.const.MinuminConstant.ACTION_BACKUP
+import id.co.minumin.const.MinuminConstant.ACTION_RESTORE
 import id.co.minumin.const.MinuminConstant.BACKUP_DRIVE
+import id.co.minumin.const.MinuminConstant.BACKUP_LOCAL
 import id.co.minumin.const.MinuminConstant.MAN
 import id.co.minumin.const.MinuminConstant.SECRET_KEY
+import id.co.minumin.const.MinuminConstant.SUPPORT_EMAIL
+import id.co.minumin.const.MinuminConstant.SUPPORT_SUBJECT
 import id.co.minumin.core.ext.showToast
 import id.co.minumin.data.dto.LanguageDto
 import id.co.minumin.data.dto.LanguageDto.ENGLISH
@@ -33,7 +41,6 @@ import id.co.minumin.presentation.dialog.BackupSuccessDialog
 import id.co.minumin.presentation.dialog.BodyWeightDialog
 import id.co.minumin.presentation.dialog.GenderSelectionDialog
 import id.co.minumin.presentation.dialog.LanguageSelectionDialog
-import id.co.minumin.presentation.dialog.LoadingDialog
 import id.co.minumin.presentation.dialog.MetricSelectionDialog
 import id.co.minumin.presentation.dialog.UserSuggestionDialog
 import id.co.minumin.presentation.dialog.WaterConsumptionDialog
@@ -45,14 +52,13 @@ import id.co.minumin.util.DateTimeUtil
 import id.co.minumin.util.DateTimeUtil.DEFAULT_TIME
 import id.co.minumin.util.DateTimeUtil.DEFAULT_TIME_FULL
 import id.co.minumin.util.DriveFileUtil
-import id.co.minumin.util.DriveServiceHelper
 import id.co.minumin.util.LocaleHelper
 import ir.androidexception.roomdatabasebackupandrestore.Backup
 import ir.androidexception.roomdatabasebackupandrestore.Restore
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
-import java.io.File
+import pub.devrel.easypermissions.EasyPermissions.hasPermissions
 import java.util.*
 import java.util.Calendar.HOUR_OF_DAY
 import java.util.Calendar.MINUTE
@@ -101,10 +107,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                 }
             }
         }
-
-    private val loadingDialog: LoadingDialog by lazy {
-        LoadingDialog(requireContext())
-    }
 
     private var userRegisterDto: UserRegisterDto? = null
 
@@ -267,76 +269,65 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     }
 
 
-    private fun handleOtherInformationListener() {
-        binding.settingsTextviewReport.setOnClickListener {
-            composeEmail(arrayOf(MinuminConstant.SUPPORT_EMAIL), MinuminConstant.SUPPORT_SUBJECT)
+    private fun handleOtherInformationListener() = with(binding) {
+        settingsTextviewReport.setOnClickListener {
+            composeEmail(arrayOf(SUPPORT_EMAIL), SUPPORT_SUBJECT)
         }
 
-        binding.settingsTextviewSuggestion.setOnClickListener {
+        settingsTextviewSuggestion.setOnClickListener {
             UserSuggestionDialog(requireContext()).apply {
-                setListener {
-
-                }
+                setListener {}
                 show()
             }
         }
 
-        binding.settingsTextviewDrivebackup.setOnClickListener {
+        settingsTextviewDrivebackup.setOnClickListener {
+            checkPurchaseStatus { checkStoragePermission { settingsViewModel.doBackup(BACKUP_DRIVE) } }
+        }
+
+        settingsTextviewLocalbackup.setOnClickListener {
             checkPurchaseStatus {
-                checkStoragePermission {
-                    settingsViewModel.doBackup(BACKUP_DRIVE)
-                }
+                checkStoragePermission { settingsViewModel.doBackup(BACKUP_LOCAL) }
             }
         }
 
-        binding.settingsTextviewLocalbackup.setOnClickListener {
+        settingsTextviewDriverestore.setOnClickListener {
             checkPurchaseStatus {
-                checkStoragePermission {
-                    settingsViewModel.doBackup(MinuminConstant.BACKUP_LOCAL)
-                }
+                checkStoragePermission { selectedAction = ACTION_RESTORE }
             }
         }
 
-        binding.settingsTextviewDriverestore.setOnClickListener {
+        settingsTextviewLocalrestore.setOnClickListener {
             checkPurchaseStatus {
                 checkStoragePermission {
-                    selectedAction = MinuminConstant.ACTION_RESTORE
-                    requestSignIn()
-                }
-            }
-        }
-
-        binding.settingsTextviewLocalrestore.setOnClickListener {
-            checkPurchaseStatus {
-                checkStoragePermission {
-                    val intent = Intent(Intent.ACTION_GET_CONTENT)
-                        .addCategory(Intent.CATEGORY_OPENABLE)
+                    val intent = Intent(ACTION_GET_CONTENT)
+                        .addCategory(CATEGORY_OPENABLE)
                         .setType(MIME_TXT)
-                        .setAction(Intent.ACTION_GET_CONTENT)
+                        .setAction(ACTION_GET_CONTENT)
 
                     filePickerResult.launch(intent)
                 }
             }
         }
 
-        binding.settingsTextviewAbout.setOnClickListener {
+        settingsTextviewAbout.setOnClickListener {
             val intent = Intent(requireContext(), AboutUsActivity::class.java)
             startActivity(intent)
             activity?.overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
         }
 
-        binding.settingsTextviewRate.setOnClickListener {
+        settingsTextviewRate.setOnClickListener {
             try {
                 startActivity(
                     Intent(
-                        Intent.ACTION_VIEW,
+                        ACTION_VIEW,
                         Uri.parse("market://details?id=${activity?.packageName}")
                     )
                 )
             } catch (e: ActivityNotFoundException) {
                 startActivity(
                     Intent(
-                        Intent.ACTION_VIEW,
+                        ACTION_VIEW,
                         Uri.parse("https://play.google.com/store/apps/details?id=${activity?.packageName}")
                     )
                 )
@@ -344,26 +335,28 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
         }
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private fun composeEmail(
         addresses: Array<String?>?,
         subject: String?
     ) {
-        val intent = Intent(Intent.ACTION_SENDTO)
-        intent.data = Uri.parse("mailto:")
-        intent.putExtra(Intent.EXTRA_EMAIL, addresses)
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-        if (activity?.packageManager?.let { intent.resolveActivity(it) } != null) {
-            startActivity(intent)
+        Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, addresses)
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            if (activity?.packageManager?.let { resolveActivity(it) } != null) {
+                startActivity(this)
+            }
         }
     }
 
     @AfterPermissionGranted(Permission.STORAGE)
     private fun checkStoragePermission(onHasPermission: () -> Unit) {
         val perms = arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            WRITE_EXTERNAL_STORAGE,
+            READ_EXTERNAL_STORAGE
         )
-        if (EasyPermissions.hasPermissions(requireContext(), *perms)) {
+        if (hasPermissions(requireContext(), *perms)) {
             onHasPermission.invoke()
         } else {
             // Do not have permissions, request them now
@@ -371,8 +364,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                 this,
                 "",
                 Permission.STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
+                WRITE_EXTERNAL_STORAGE,
+                READ_EXTERNAL_STORAGE
             )
         }
     }
@@ -438,72 +431,19 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                         return@onWorkFinishListener
                     }
                     when (data.first) {
-                        MinuminConstant.BACKUP_LOCAL -> {
+                        BACKUP_LOCAL -> {
                             BackupSuccessDialog.newInstance(requireContext()).apply {
-                                setListener { startActivity(Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)) }
+                                setListener { startActivity(Intent(ACTION_VIEW_DOWNLOADS)) }
                                 show()
                             }
                         }
 
                         else -> {
-                            selectedAction = MinuminConstant.ACTION_BACKUP
-                            requestSignIn()
+                            selectedAction = ACTION_BACKUP
                         }
                     }
                 }.execute()
         }
-    }
-
-    private fun requestSignIn() {
-
-    }
-
-    private fun handleSignInResult(result: Intent, onLogin: (googleDriveService: Drive) -> Unit) {
-
-    }
-
-    private fun handleUploadToGoogleDrive(drive: Drive) {
-        loadingDialog.show()
-        DriveServiceHelper(drive).apply {
-            uploadFile(File(filePath.orEmpty()))?.addOnSuccessListener { dto ->
-                loadingDialog.dismiss()
-                context?.showToast(
-                    getString(
-                        R.string.settings_text_successdrive,
-                        dto?.name.orEmpty()
-                    )
-                )
-            }?.addOnFailureListener { ex ->
-                loadingDialog.dismiss()
-                context?.showToast(ex.localizedMessage.orEmpty())
-            }
-        }
-    }
-
-    private fun handlePurchaseStatusIcon() {
-        val iconEnd = if (purchaseStatus) {
-            R.drawable.general_ic_chevron_right
-        } else {
-            R.drawable.general_ic_lock
-        }
-
-        binding.settingsTextviewWidget.setCompoundDrawablesWithIntrinsicBounds(
-            R.drawable.general_ic_crown, 0, iconEnd, 0
-        )
-        binding.settingsTextviewDrivebackup.setCompoundDrawablesWithIntrinsicBounds(
-            R.drawable.general_ic_drive, 0, iconEnd, 0
-        )
-        binding.settingsTextviewLocalbackup.setCompoundDrawablesWithIntrinsicBounds(
-            R.drawable.general_ic_phone, 0, iconEnd, 0
-        )
-        binding.settingsTextviewLocalrestore.setCompoundDrawablesWithIntrinsicBounds(
-            R.drawable.general_ic_restore, 0, iconEnd, 0
-        )
-    }
-
-    private fun handlePurchaseStatusLiveData(status: Boolean) {
-        purchaseStatus = status
-        handlePurchaseStatusIcon()
     }
 
     private fun checkPurchaseStatus(onPurchase: () -> Unit) {
@@ -512,10 +452,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
         } else {
             val intent = Intent(context, ProActivity::class.java)
             startActivity(intent)
-            activity?.overridePendingTransition(
-                R.anim.anim_fade_in,
-                R.anim.anim_fade_out
-            )
+            activity?.overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
         }
     }
 

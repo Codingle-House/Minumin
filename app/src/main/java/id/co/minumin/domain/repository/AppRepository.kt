@@ -1,5 +1,9 @@
 package id.co.minumin.domain.repository
 
+import id.co.minumin.const.MinuminConstant.Time.HOURS
+import id.co.minumin.const.MinuminConstant.Time.MILLIS
+import id.co.minumin.const.MinuminConstant.Time.MINUTES
+import id.co.minumin.const.MinuminConstant.Time.SECONDS
 import id.co.minumin.data.dto.BackupUserSettingDto
 import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.mapper.DataMapper
@@ -32,7 +36,7 @@ class AppRepository @Inject constructor(
 
     suspend fun getDrinkWaterBetweenDate(startDate: Date, endDate: Date): List<DrinkDto> {
         val millis = endDate.time - startDate.time
-        val daysDifference = (millis / (1000 * 60 * 60 * 24))
+        val daysDifference = (millis / (MILLIS * SECONDS * MINUTES * HOURS))
         val list = when (daysDifference.toInt()) {
             SEVEN_DAYS -> localDataSource.getDrinkWaterLast7Days()
             else -> localDataSource.getDrinkWaterLast30Days()

@@ -3,7 +3,6 @@ package id.co.minumin.presentation.about
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
-import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseActivity
@@ -21,8 +20,6 @@ import me.everything.android.ui.overscroll.VerticalOverScrollBounceEffectDecorat
 @AndroidEntryPoint
 class AboutUsActivity : BaseActivity<ActivityAboutusBinding>() {
 
-    private val aboutUsViewModel: AboutUsViewModel by viewModels()
-
     override val bindingInflater: (LayoutInflater) -> ActivityAboutusBinding
         get() = ActivityAboutusBinding::inflate
 
@@ -33,10 +30,7 @@ class AboutUsActivity : BaseActivity<ActivityAboutusBinding>() {
         initUi()
     }
 
-    override fun onViewModelObserver() {
-
-    }
-
+    override fun onViewModelObserver() = Unit
     private fun initUi() {
         VerticalOverScrollBounceEffectDecorator(
             NestedScrollViewOverScrollDecorAdapter(binding.aboutusScrollview)
