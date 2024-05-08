@@ -15,6 +15,8 @@ import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
 import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.util.DateTimeUtil
+import id.co.minumin.util.DateTimeUtil.convertDate
+import id.co.minumin.util.DateTimeUtil.getCurrentTime
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -56,7 +58,9 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
                     val intent = Intent(context, BroadcastWidgetTwo::class.java)
                     intent.action = ACTION_ADD
                     val pendingIntent = PendingIntent.getBroadcast(
-                        context, 0, intent,
+                        context,
+                        0,
+                        intent,
                         FLAG_UPDATE_CURRENT
                     )
 
@@ -95,13 +99,9 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         if (ACTION_ADD == intent.action) {
-            coroutineScope.launch {
-                updateData(context)
-            }
+            coroutineScope.launch { updateData(context) }
         } else {
-            coroutineScope.launch {
-                loadData(context)
-            }
+            coroutineScope.launch { loadData(context) }
         }
     }
 
@@ -124,13 +124,11 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
             val id = Calendar.getInstance().timeInMillis
             val drinkDto = DrinkDto(
                 id = id,
-                date = DateTimeUtil.convertDate(currentDate).orEmpty(),
-                time = DateTimeUtil.getCurrentTime(),
+                date = convertDate(currentDate).orEmpty(),
+                time = getCurrentTime(),
                 consumption = selectedCupCapacity
             )
-            val total = repository.doDrinkWaterAndGet(drinkDto).sumBy { list -> list.consumption }
-
-
+            val total = repository.doDrinkWaterAndGet(drinkDto).sumOf { list -> list.consumption }
             updateWidget(context, waterNeeds, total)
         }
     }

@@ -45,9 +45,7 @@ import id.co.minumin.presentation.dialog.MetricSelectionDialog
 import id.co.minumin.presentation.dialog.UserSuggestionDialog
 import id.co.minumin.presentation.dialog.WaterConsumptionDialog
 import id.co.minumin.presentation.notification.NotificationActivity
-import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.presentation.splashscreen.SplashscreenActivity
-import id.co.minumin.presentation.widgetpreview.WidgetPreviewActivity
 import id.co.minumin.util.DateTimeUtil
 import id.co.minumin.util.DateTimeUtil.DEFAULT_TIME
 import id.co.minumin.util.DateTimeUtil.DEFAULT_TIME_FULL
@@ -114,7 +112,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     private var selectedAction: Int = -1
 
     private var selectedLanguageDto: LanguageDto = ENGLISH
-    private var purchaseStatus: Boolean = false
 
     override fun onViewReady() {
         changeStatusBarTextColor(true)
@@ -178,16 +175,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                 R.anim.anim_fade_in,
                 R.anim.anim_fade_out
             )
-        }
-
-        binding.settingsTextviewWidget.setOnClickListener {
-            checkPurchaseStatus {
-                startActivity(Intent(requireContext(), WidgetPreviewActivity::class.java))
-                activity?.overridePendingTransition(
-                    R.anim.anim_fade_in,
-                    R.anim.anim_fade_out
-                )
-            }
         }
     }
 
@@ -282,31 +269,25 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
         }
 
         settingsTextviewDrivebackup.setOnClickListener {
-            checkPurchaseStatus { checkStoragePermission { settingsViewModel.doBackup(BACKUP_DRIVE) } }
+            checkStoragePermission { settingsViewModel.doBackup(BACKUP_DRIVE) }
         }
 
         settingsTextviewLocalbackup.setOnClickListener {
-            checkPurchaseStatus {
-                checkStoragePermission { settingsViewModel.doBackup(BACKUP_LOCAL) }
-            }
+            checkStoragePermission { settingsViewModel.doBackup(BACKUP_LOCAL) }
         }
 
         settingsTextviewDriverestore.setOnClickListener {
-            checkPurchaseStatus {
-                checkStoragePermission { selectedAction = ACTION_RESTORE }
-            }
+            checkStoragePermission { selectedAction = ACTION_RESTORE }
         }
 
         settingsTextviewLocalrestore.setOnClickListener {
-            checkPurchaseStatus {
-                checkStoragePermission {
-                    val intent = Intent(ACTION_GET_CONTENT)
-                        .addCategory(CATEGORY_OPENABLE)
-                        .setType(MIME_TXT)
-                        .setAction(ACTION_GET_CONTENT)
+            checkStoragePermission {
+                val intent = Intent(ACTION_GET_CONTENT)
+                    .addCategory(CATEGORY_OPENABLE)
+                    .setType(MIME_TXT)
+                    .setAction(ACTION_GET_CONTENT)
 
-                    filePickerResult.launch(intent)
-                }
+                filePickerResult.launch(intent)
             }
         }
 
@@ -443,16 +424,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                         }
                     }
                 }.execute()
-        }
-    }
-
-    private fun checkPurchaseStatus(onPurchase: () -> Unit) {
-        if (purchaseStatus) {
-            onPurchase.invoke()
-        } else {
-            val intent = Intent(context, ProActivity::class.java)
-            startActivity(intent)
-            activity?.overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
         }
     }
 

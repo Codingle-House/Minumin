@@ -76,10 +76,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         )
     }
 
-    private val loadingDialog by lazy {
-        LoadingDialog(requireContext())
-    }
-
     private var selectedCupCapacity: Int = 0
     private var totalWaterConsumption: Int = 0
     private var currentWaterConsumption: Int = 0
@@ -177,9 +173,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private fun loadData() {
         binding.mainTextviewDate.text = getCurrentDateString(FULL_DATE_FORMAT)
-        if (loadingDialog.isShowing.not()) {
-            loadingDialog.show()
-        }
         with(mainViewModel) {
             getData()
             getDrinkWater(currentDate)
@@ -223,7 +216,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         )
 
         if (currentWaterConsumption != 0) {
-            calculatePersentage()
+            calculatePercentage()
         }
     }
 
@@ -247,17 +240,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         drinkAdapter.setData(list)
         binding.mainPlaceholder.root.isGone = list.isNotEmpty()
         binding.mainRecyclerviewDrink.isGone = list.isEmpty()
-        calculatePersentage()
+        calculatePercentage()
     }
 
     @SuppressLint("SetTextI18n")
-    private fun calculatePersentage() {
-        if (loadingDialog.isShowing) {
-            Handler(Looper.getMainLooper()).postDelayed(
-                { loadingDialog.dismiss() },
-                MILLIS.toLong()
-            )
-        }
+    private fun calculatePercentage() {
         val percentage =
             currentWaterConsumption.toDouble() / totalWaterConsumption.toDouble() * MAX_PERCENTAGE
         with(binding.mainProgress) {
