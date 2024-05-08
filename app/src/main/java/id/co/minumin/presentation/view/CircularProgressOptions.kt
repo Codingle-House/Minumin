@@ -118,6 +118,6 @@ internal class CircularProgressOptions {
     companion object {
         private const val MIN_FADE_ALPHA = 85
         private const val MAX_ALPHA = 255
-        private const val DASH_LINE_LENGTH = 8
+        private const val DASH_LINE_LENGTH = 8F
     }
 }

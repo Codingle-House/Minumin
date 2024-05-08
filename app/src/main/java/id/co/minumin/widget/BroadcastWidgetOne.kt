@@ -1,11 +1,14 @@
 package id.co.minumin.widget
 
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.widget.RemoteViews
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
@@ -14,6 +17,7 @@ import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
 import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.util.DateTimeUtil
+import id.co.minumin.util.DateTimeUtil.convertDate
 import id.co.minumin.util.DateTimeUtil.getCurrentDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -57,7 +61,7 @@ class BroadcastWidgetOne : AppWidgetProvider() {
                     intent.action = ACTION_ADD
                     val pendingIntent = PendingIntent.getBroadcast(
                         context, 0, intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        FLAG_UPDATE_CURRENT
                     )
                     views.setOnClickPendingIntent(R.id.widget_cardview_add_1, pendingIntent)
                     appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -65,13 +69,13 @@ class BroadcastWidgetOne : AppWidgetProvider() {
                     val views = RemoteViews(context.packageName, R.layout.widget_one)
                     val pendingIntent = Intent(context, ProActivity::class.java)
                     pendingIntent.flags =
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        FLAG_ACTIVITY_CLEAR_TOP or FLAG_ACTIVITY_SINGLE_TOP
                     val contentIntent =
                         PendingIntent.getActivity(
                             context,
                             REQUEST_CODE,
                             pendingIntent,
-                            PendingIntent.FLAG_UPDATE_CURRENT
+                            FLAG_UPDATE_CURRENT
                         )
                     views.setOnClickPendingIntent(R.id.widget_cardview_add_1, contentIntent)
                     appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -85,7 +89,6 @@ class BroadcastWidgetOne : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
@@ -94,13 +97,9 @@ class BroadcastWidgetOne : AppWidgetProvider() {
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         if (ACTION_ADD == intent.action) {
-            coroutineScope.launch {
-                updateData(context)
-            }
+            coroutineScope.launch { updateData(context) }
         } else {
-            coroutineScope.launch {
-                loadData(context)
-            }
+            coroutineScope.launch { loadData(context) }
         }
     }
 
@@ -123,7 +122,7 @@ class BroadcastWidgetOne : AppWidgetProvider() {
             val id = Calendar.getInstance().timeInMillis
             val drinkDto = DrinkDto(
                 id = id,
-                date = DateTimeUtil.convertDate(currentDate).orEmpty(),
+                date = convertDate(currentDate).orEmpty(),
                 time = DateTimeUtil.getCurrentTime(),
                 consumption = selectedCupCapacity
             )
@@ -147,8 +146,7 @@ class BroadcastWidgetOne : AppWidgetProvider() {
             val waterNeeds =
                 it.first.consumption + it.second.waterNeeds + it.third.consumption
             val total =
-                repository.getDrinkWater(currentDate).sumBy { list -> list.consumption }
-
+                repository.getDrinkWater(currentDate).sumOf { list -> list.consumption }
             updateWidget(context, waterNeeds, total)
         }
     }
