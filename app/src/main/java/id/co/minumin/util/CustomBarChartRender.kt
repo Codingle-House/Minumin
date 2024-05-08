@@ -1,8 +1,10 @@
 package id.co.minumin.util
 
 import android.graphics.Canvas
+import android.graphics.LinearGradient
 import android.graphics.Path
 import android.graphics.RectF
+import android.graphics.Shader
 import com.github.mikephil.charting.animation.ChartAnimator
 import com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
@@ -105,27 +107,27 @@ class CustomBarChartRender(
             if (dataSet.gradientColor != null) {
                 val gradientColor = dataSet.gradientColor
                 with(barBuffer) {
-                    mRenderPaint.shader = android.graphics.LinearGradient(
+                    mRenderPaint.shader = LinearGradient(
                         buffer[j],
                         buffer[j + BUFFER_BOTTOM_INDEX],
                         buffer[j],
                         buffer[j + BUFFER_TOP_INDEX],
                         gradientColor.startColor,
                         gradientColor.endColor,
-                        android.graphics.Shader.TileMode.MIRROR
+                        Shader.TileMode.MIRROR
                     )
                 }
             }
             if (dataSet.gradientColors != null) {
                 with(barBuffer) {
-                    mRenderPaint.shader = android.graphics.LinearGradient(
+                    mRenderPaint.shader = LinearGradient(
                         buffer[j],
                         buffer[j + BUFFER_BOTTOM_INDEX],
                         buffer[j],
                         buffer[j + BUFFER_TOP_INDEX],
                         dataSet.getGradientColor(j / BUFFER_MAX_INDEX).startColor,
                         dataSet.getGradientColor(j / BUFFER_MAX_INDEX).endColor,
-                        android.graphics.Shader.TileMode.MIRROR
+                        Shader.TileMode.MIRROR
                     )
                 }
             }

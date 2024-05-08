@@ -107,16 +107,21 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
                 weight = backupUserSettingDto.weight
                 waterNeeds = backupUserSettingDto.waterNeeds
                 isNotificationActive = backupUserSettingDto.isNotificationActive
-                navigation =
-                    dataMapper.convertNavigationDtoToProto(UserNavigationDto.values()[backupUserSettingDto.navigation])
-                language =
-                    dataMapper.convertLanguageDtoToProto(LanguageDto.values()[backupUserSettingDto.language])
-                weatherCondition =
-                    dataMapper.convertWeatherDtoToProto(WeatherConditionDto.values()[backupUserSettingDto.weatherCondition])
-                physicalCondition =
-                    dataMapper.convertPhysicalDtoToProto(PhysicalActivitiesDto.values()[backupUserSettingDto.physicalCondition])
-                glassSelection =
-                    dataMapper.convertCupDtoToProto(CupSelectionDto.values()[backupUserSettingDto.glassSelection])
+                navigation = dataMapper.convertNavigationDtoToProto(
+                    UserNavigationDto.entries[backupUserSettingDto.navigation]
+                )
+                language = dataMapper.convertLanguageDtoToProto(
+                    LanguageDto.entries[backupUserSettingDto.language]
+                )
+                weatherCondition = dataMapper.convertWeatherDtoToProto(
+                    WeatherConditionDto.entries[backupUserSettingDto.weatherCondition]
+                )
+                physicalCondition = dataMapper.convertPhysicalDtoToProto(
+                    PhysicalActivitiesDto.entries[backupUserSettingDto.physicalCondition]
+                )
+                glassSelection = dataMapper.convertCupDtoToProto(
+                    CupSelectionDto.entries[backupUserSettingDto.glassSelection]
+                )
             }.build()
         }
     }

@@ -35,11 +35,10 @@ class ProgressActivity : BaseActivity<ActivityProgressBinding>() {
         }
     }
 
-    override fun onViewModelObserver() {
-    }
+    override fun onViewModelObserver() = Unit
 
     private fun View.doBounceAnimation(onAnimationEnd: () -> Unit) {
-        val bounceInterpolator: Interpolator = Interpolator { v -> getPowOut(v, POW) }
+        val bounceInterpolator = Interpolator { v -> getPowOut(v, POW) }
 
         ObjectAnimator.ofFloat(
             this,

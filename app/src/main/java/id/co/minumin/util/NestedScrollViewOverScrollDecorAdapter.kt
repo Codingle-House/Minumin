@@ -12,7 +12,7 @@ import me.everything.android.ui.overscroll.adapters.IOverScrollDecoratorAdapter
 
 class NestedScrollViewOverScrollDecorAdapter(view: NestedScrollView) :
     IOverScrollDecoratorAdapter {
-    protected val mView: NestedScrollView = view
+    private val mView: NestedScrollView = view
     override fun getView(): View {
         return mView
     }

@@ -1,6 +1,7 @@
 package id.co.minumin.widget
 
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
@@ -12,13 +13,11 @@ import id.co.minumin.R
 import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
-import id.co.minumin.presentation.home.HomeActivity
 import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.util.DateTimeUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.*
@@ -58,7 +57,7 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
                     intent.action = ACTION_ADD
                     val pendingIntent = PendingIntent.getBroadcast(
                         context, 0, intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        FLAG_UPDATE_CURRENT
                     )
 
                     views.setOnClickPendingIntent(R.id.widget_cardview_add_2, pendingIntent)
@@ -71,9 +70,9 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
                     val contentIntent =
                         PendingIntent.getActivity(
                             context,
-                            99,
+                            REQUEST_CODE,
                             pendingIntent,
-                            PendingIntent.FLAG_UPDATE_CURRENT
+                            FLAG_UPDATE_CURRENT
                         )
                     views.setOnClickPendingIntent(R.id.widget_cardview_add_2, contentIntent)
                     appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -188,5 +187,6 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
     companion object {
         private const val ACTION_ADD = "ACTION_WIDGET_ADD"
         private const val MAX_PERCENTAGE = 100
+        private const val REQUEST_CODE = 99
     }
 }

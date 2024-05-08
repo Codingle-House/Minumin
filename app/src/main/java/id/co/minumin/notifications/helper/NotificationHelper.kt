@@ -4,6 +4,8 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -17,7 +19,6 @@ import id.co.minumin.R
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.presentation.home.HomeActivity
 import id.co.minumin.util.DateTimeUtil
-import kotlinx.coroutines.flow.collect
 import java.util.*
 import javax.inject.Inject
 
@@ -69,9 +70,9 @@ class NotificationHelper @Inject constructor(
         val contentIntent =
             PendingIntent.getActivity(
                 context,
-                99,
+                REQUEST_NUMBER,
                 notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE
             )
 
 
@@ -95,9 +96,9 @@ class NotificationHelper @Inject constructor(
         val contentIntent =
             PendingIntent.getActivity(
                 context,
-                99,
+                REQUEST_NUMBER,
                 notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
 
 
@@ -183,5 +184,6 @@ class NotificationHelper @Inject constructor(
     companion object {
         private const val CHANNEL_ONE_ID = "id.co.minumin.CHANNELONE"
         private const val CHANNEL_ONE_NAME = "Channel One"
+        private const val REQUEST_NUMBER = 99
     }
 }

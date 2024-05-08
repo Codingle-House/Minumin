@@ -1,6 +1,5 @@
 package id.co.minumin.presentation.notification
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,13 +35,8 @@ class NotificationActivity : BaseActivity<ActivityNotificationBinding>() {
         loadData()
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onViewModelObserver() {
-        with(notificationViewModel) {
-            observeUserCondition().onResult { handleUserConditionLiveData(it) }
-
-            observePurchaseStatus().onResult { handlePurchaseStatusLiveData(it) }
-        }
+    override fun onViewModelObserver() = with(notificationViewModel) {
+        observeUserCondition().onResult { handleUserConditionLiveData(it) }
     }
 
     private fun setupToolbar() {
@@ -84,10 +78,6 @@ class NotificationActivity : BaseActivity<ActivityNotificationBinding>() {
         )
         binding.notificationTextviewTime.text = "$wakeupTime - $sleepTime"
         binding.notificationSwitchStatus.isChecked = userRegisterDto.isNotificationActive
-    }
-
-    private fun handlePurchaseStatusLiveData(status: Boolean) {
-
     }
 
     override fun finish() {

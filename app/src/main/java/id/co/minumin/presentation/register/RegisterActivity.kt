@@ -48,9 +48,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         setupSubmitListener()
     }
 
-    override fun onViewModelObserver() {
-
-    }
+    override fun onViewModelObserver() = Unit
 
     private fun setupGenderListener() {
         binding.registerImageviewWoman.setOnClickListener {
@@ -91,8 +89,12 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             val wakeUpTime = binding.registerFormWakeuptime.getFormText()
             val sleepTime = binding.registerFormSleeptime.getFormText()
 
-            if (selectedGender == null || weight.isEmpty() ||
-                wakeUpTime.isEmpty() || sleepTime.isEmpty()
+            if (setOf(
+                    selectedGender == null,
+                    weight.isEmpty(),
+                    wakeUpTime.isEmpty(),
+                    sleepTime.isEmpty()
+                ).any { it }
             ) return@setOnClickListener
 
             registerViewModel.updateUserRegisterData(
