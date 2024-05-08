@@ -30,14 +30,11 @@ class AboutUsActivity : BaseActivity<ActivityAboutusBinding>() {
         changeStatusBarTextColor(true)
         changeStatusBarColor(android.R.color.white)
         setupToolbar()
-        loadData()
         initUi()
     }
 
     override fun onViewModelObserver() {
-        with(aboutUsViewModel) {
-            observePurchaseStatus().onResult { handlePurchaseStatusLiveData(it) }
-        }
+
     }
 
     private fun initUi() {
@@ -92,15 +89,6 @@ class AboutUsActivity : BaseActivity<ActivityAboutusBinding>() {
             data = Uri.parse(url)
         }
         startActivity(intent)
-    }
-
-    private fun handlePurchaseStatusLiveData(status: Boolean) {
-
-    }
-
-
-    private fun loadData() {
-        aboutUsViewModel.getPurchaseStatus()
     }
 
     override fun finish() {

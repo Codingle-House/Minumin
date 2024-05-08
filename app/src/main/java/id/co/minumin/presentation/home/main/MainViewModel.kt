@@ -31,9 +31,6 @@ class MainViewModel @Inject constructor(
     private val userConditionDto = MutableLiveData<UserRegisterDto>()
     private val physicalActivitiesDto = MutableLiveData<PhysicalActivitiesDto>()
 
-    private val purchaseStatus = SingleLiveEvent<Boolean>()
-    fun observePurchaseStatus(): LiveData<Boolean> = purchaseStatus
-
     private var liveDataMerger =
         MutableLiveData<Triple<WeatherConditionDto, UserRegisterDto, PhysicalActivitiesDto>>()
 
@@ -136,12 +133,6 @@ class MainViewModel @Inject constructor(
                 val list = getDrinkWater(currentDate)
                 waterConsumption.postValue(list)
             }
-        }
-    }
-
-    fun getPurchaseStatus() = viewModelScope.launch {
-        userPreferenceManager.getPurchaseStatus().collect {
-            purchaseStatus.postValue(it)
         }
     }
 }
