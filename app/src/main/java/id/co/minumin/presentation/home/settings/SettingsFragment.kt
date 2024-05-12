@@ -16,6 +16,7 @@ import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
@@ -257,6 +258,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
 
     private fun handleOtherInformationListener() = with(binding) {
+        settingsCardviewBackup.isGone = true
         settingsTextviewReport.setOnClickListener {
             composeEmail(arrayOf(SUPPORT_EMAIL), SUPPORT_SUBJECT)
         }
