@@ -168,6 +168,5 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
     companion object {
         private const val ACTION_ADD = "ACTION_WIDGET_ADD"
         private const val MAX_PERCENTAGE = 100
-        private const val REQUEST_CODE = 99
     }
 }

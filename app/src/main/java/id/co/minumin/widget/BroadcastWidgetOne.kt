@@ -153,6 +153,5 @@ class BroadcastWidgetOne : AppWidgetProvider() {
 
     companion object {
         private const val ACTION_ADD = "ACTION_ADD"
-        private const val REQUEST_CODE = 99
     }
 }
