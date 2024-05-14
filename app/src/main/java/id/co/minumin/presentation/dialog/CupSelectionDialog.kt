@@ -1,7 +1,9 @@
 package id.co.minumin.presentation.dialog
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import id.co.minumin.R
 import id.co.minumin.data.dto.CupSelectionDto
 import id.co.minumin.data.dto.CupSelectionDto.CUP_100
 import id.co.minumin.data.dto.CupSelectionDto.CUP_150
@@ -21,24 +23,36 @@ class CupSelectionDialog(context: Context) : MinuminDialog<DialogCupSelectionBin
 
     private var action: (CupSelectionDto) -> Unit = { _ -> kotlin.run { } }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateDialog() = with(binding) {
-        cupImageview100.setOnClickListener {
+        cupTv100.text = "${CUP_100.capacity} ${context.getString(R.string.general_text_ml)}"
+        cupTv150.text = "${CUP_150.capacity} ${context.getString(R.string.general_text_ml)}"
+        cupTv200.text = "${CUP_200.capacity} ${context.getString(R.string.general_text_ml)}"
+        cupTv300.text = "${CUP_300.capacity} ${context.getString(R.string.general_text_ml)}"
+        cupTv400.text = "${CUP_400.capacity} ${context.getString(R.string.general_text_ml)}"
+        cupTvCustom.text = context.getString(R.string.general_text_custom)
+
+        cupLinear100.setOnClickListener {
             action.invoke(CUP_100)
             dismiss()
         }
-        cupImageview150.setOnClickListener {
+        cupLinear150.setOnClickListener {
             action.invoke(CUP_150)
             dismiss()
         }
-        cupImageview200.setOnClickListener {
+        cupLinear200.setOnClickListener {
             action.invoke(CUP_200)
             dismiss()
         }
-        cupImageview300.setOnClickListener {
+        cupLinear300.setOnClickListener {
             action.invoke(CUP_300)
             dismiss()
         }
-        cupImageview400.setOnClickListener {
+        cupLinear400.setOnClickListener {
+            action.invoke(CUP_400)
+            dismiss()
+        }
+        cupLinear400.setOnClickListener {
             action.invoke(CUP_400)
             dismiss()
         }

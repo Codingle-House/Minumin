@@ -40,8 +40,10 @@ message UserSetting {
     CUP_200 = 2;
     CUP_300 = 3;
     CUP_400 = 4;
+    CUP_CUSTOM = 5;
   }
   GlassSelection glassSelection = 10;
   bool isNotificationActive = 11;
   bool isPro = 12;
+  int32 customCupSize = 13;
 }

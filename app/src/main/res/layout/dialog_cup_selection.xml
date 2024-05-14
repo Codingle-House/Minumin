@@ -25,40 +25,86 @@
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:weightSum="3">
 
-            <ImageView
-                android:id="@+id/cup_imageview_100"
+            <LinearLayout
+                android:id="@+id/cup_linear_100"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/general_shape_rounded_border"
-                android:padding="@dimen/_15sdp"
-                app:srcCompat="@drawable/general_ic_cupadd_100" />
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:srcCompat="@drawable/general_ic_cupadd_100" />
+
+                <id.co.minumin.uikit.MinuminTextView
+                    android:id="@+id/cup_tv_100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:minumin_text_code="h7_S" />
+            </LinearLayout>
 
             <View
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp" />
 
-            <ImageView
-                android:id="@+id/cup_imageview_150"
+            <LinearLayout
+                android:id="@+id/cup_linear_150"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/general_shape_rounded_border"
-                android:padding="@dimen/_15sdp"
-                app:srcCompat="@drawable/general_ic_cupadd_150" />
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:srcCompat="@drawable/general_ic_cupadd_150" />
+
+                <id.co.minumin.uikit.MinuminTextView
+                    android:id="@+id/cup_tv_150"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:minumin_text_code="h7_S" />
+            </LinearLayout>
 
             <View
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp" />
 
-            <ImageView
-                android:id="@+id/cup_imageview_200"
+            <LinearLayout
+                android:id="@+id/cup_linear_200"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/general_shape_rounded_border"
-                android:padding="@dimen/_15sdp"
-                app:srcCompat="@drawable/general_ic_cupadd_200" />
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:srcCompat="@drawable/general_ic_cupadd_200" />
+
+                <id.co.minumin.uikit.MinuminTextView
+                    android:id="@+id/cup_tv_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:minumin_text_code="h7_S" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -68,40 +114,85 @@
             android:layout_marginVertical="@dimen/_16sdp"
             android:weightSum="3">
 
-            <ImageView
-                android:id="@+id/cup_imageview_300"
+            <LinearLayout
+                android:id="@+id/cup_linear_300"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/general_shape_rounded_border"
-                android:padding="@dimen/_15sdp"
-                app:srcCompat="@drawable/general_ic_cupadd_300" />
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:srcCompat="@drawable/general_ic_cupadd_300" />
+
+                <id.co.minumin.uikit.MinuminTextView
+                    android:id="@+id/cup_tv_300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:minumin_text_code="h7_S" />
+            </LinearLayout>
 
             <View
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp" />
 
-            <ImageView
-                android:id="@+id/cup_imageview_400"
+            <LinearLayout
+                android:id="@+id/cup_linear_400"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/general_shape_rounded_border"
-                android:padding="@dimen/_15sdp"
-                app:srcCompat="@drawable/general_ic_cupadd_400" />
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:srcCompat="@drawable/general_ic_cupadd_400" />
+
+                <id.co.minumin.uikit.MinuminTextView
+                    android:id="@+id/cup_tv_400"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:minumin_text_code="h7_S" />
+            </LinearLayout>
 
             <View
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp" />
 
-            <ImageView
+            <LinearLayout
+                android:id="@+id/cup_linear_custom"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/general_shape_rounded_border"
-                android:padding="@dimen/_15sdp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/general_ic_cupadd_400" />
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:srcCompat="@drawable/general_ic_cupadd_custom" />
+
+                <id.co.minumin.uikit.MinuminTextView
+                    android:id="@+id/cup_tv_custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:minumin_text_code="h7_S" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
