@@ -7,9 +7,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseActivity
 import id.co.minumin.databinding.ActivityAboutusBinding
-import id.co.minumin.presentation.pro.ProActivity
-import id.co.minumin.presentation.view.ProFeatureView.Action.Click
-import id.co.minumin.presentation.view.ProFeatureView.Action.Close
 import id.co.minumin.util.NestedScrollViewOverScrollDecorAdapter
 import me.everything.android.ui.overscroll.VerticalOverScrollBounceEffectDecorator
 
@@ -35,23 +32,6 @@ class AboutUsActivity : BaseActivity<ActivityAboutusBinding>() {
         VerticalOverScrollBounceEffectDecorator(
             NestedScrollViewOverScrollDecorAdapter(binding.aboutusScrollview)
         )
-
-        with(binding.aboutusProview) {
-            showWithAnimation(false)
-            setListener { action ->
-                when (action) {
-                    Click -> {
-                        val intent = Intent(context, ProActivity::class.java)
-                        startActivity(intent)
-                        overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out)
-                    }
-
-                    Close -> {
-
-                    }
-                }
-            }
-        }
 
         binding.aboutusTextviewFreepik.setOnClickListener {
             openUrl("https://www.flaticon.com/authors/freepik")

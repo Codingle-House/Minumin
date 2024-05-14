@@ -1,63 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/general_bg_dialog">
+    android:layout_gravity="center"
+    android:background="@drawable/general_bg_dialog"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <id.co.minumin.uikit.MinuminTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:text="@string/dialog_title_weight" />
 
-        <id.co.minumin.uikit.MinuminTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginVertical="@dimen/_20sdp"
-            android:text="@string/dialog_title_weight" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line_gray" />
-
-        <id.co.minumin.uikit.MinuminTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/register_text_weight"
-            app:minumin_text_code="p_a_s"
-            app:minumin_text_color="dark" />
+    <id.co.minumin.uikit.MinuminTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/register_text_weight"
+        app:minumin_text_code="p_a_s"
+        app:minumin_text_color="dark" />
 
 
-        <id.co.minumin.uikit.MinuminFormEditText
-            android:id="@+id/register_form_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:minumin_input_type="number"
-            app:minumin_max_length="3"
-            app:minumin_show_error="false"
-            app:minumin_text_error="@string/register_text_weight_error"
-            app:minumin_text_hint="@string/register_text_weight_hint"
-            app:minumin_text_unit="@string/general_text_kilograms" />
+    <id.co.minumin.uikit.MinuminFormEditText
+        android:id="@+id/register_form_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:minumin_input_type="number"
+        app:minumin_max_length="3"
+        app:minumin_show_error="false"
+        app:minumin_text_error="@string/register_text_weight_error"
+        app:minumin_text_hint="@string/register_text_weight_hint"
+        app:minumin_text_unit="@string/general_text_kilograms" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/register_button_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginVertical="@dimen/_20sdp"
-            android:background="@drawable/general_selector_button"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/general_text_choose"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/_11sdp" />
-    </LinearLayout>
-</RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/register_button_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/general_selector_button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/general_text_choose"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_11sdp" />
+</LinearLayout>

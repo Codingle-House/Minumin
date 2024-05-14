@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/general_bg_dialog">
+    android:layout_gravity="center"
+    android:background="@drawable/general_bg_dialog"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/_30sdp">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/loading_imageview_mascot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/general_ic_mascot" />
+
+    <id.co.minumin.uikit.MinuminTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
         android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/_30sdp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/loading_imageview_mascot"
-            android:src="@drawable/general_ic_mascot" />
-
-        <id.co.minumin.uikit.MinuminTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:text="@string/progress_text_title"
-            app:minumin_text_code="h6_B" />
-    </LinearLayout>
-</RelativeLayout>
+        android:text="@string/progress_text_title"
+        app:minumin_text_code="h6_B" />
+</LinearLayout>

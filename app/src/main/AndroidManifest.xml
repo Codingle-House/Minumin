@@ -52,11 +52,6 @@
             android:name=".presentation.notification.NotificationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.pro.ProActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name=".presentation.about.AboutUsActivity"
             android:screenOrientation="portrait" />
 
