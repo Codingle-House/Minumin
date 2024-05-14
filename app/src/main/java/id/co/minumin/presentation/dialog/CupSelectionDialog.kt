@@ -10,6 +10,7 @@ import id.co.minumin.data.dto.CupSelectionDto.CUP_150
 import id.co.minumin.data.dto.CupSelectionDto.CUP_200
 import id.co.minumin.data.dto.CupSelectionDto.CUP_300
 import id.co.minumin.data.dto.CupSelectionDto.CUP_400
+import id.co.minumin.data.dto.CupSelectionDto.CUP_CUSTOM
 import id.co.minumin.databinding.DialogCupSelectionBinding
 import id.co.minumin.uikit.MinuminDialog
 
@@ -52,8 +53,8 @@ class CupSelectionDialog(context: Context) : MinuminDialog<DialogCupSelectionBin
             action.invoke(CUP_400)
             dismiss()
         }
-        cupLinear400.setOnClickListener {
-            action.invoke(CUP_400)
+        cupLinearCustom.setOnClickListener {
+            action.invoke(CUP_CUSTOM)
             dismiss()
         }
     }

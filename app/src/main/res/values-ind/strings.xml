@@ -15,6 +15,7 @@
     <string name="general_text_delete">Hapus</string>
     <string name="general_text_explore">Lihat</string>
     <string name="general_text_custom">Custom</string>
+    <string name="general_text_size">Ukuran</string>
 
     <string name="splashscreen_text_motto">"\"Hidup sehat dengan cukup minum air putih\""</string>
 
@@ -96,6 +97,9 @@
     <string name="home_text_tips">Buat tubuhmu terus terhidrasi dengan cukup meminum air putih</string>
     <string name="home_title_history">Riwayat Hari Ini</string>
     <string name="home_text_item_drink">Kamu telah meminum air sebanyak %s</string>
+    <string name="home_title_custom_cup">Kustomisasi Ukuran Gelas Kamu</string>
+    <string name="home_error_custom_cup">Ukuran tidak boleh kosong</string>
+    <string name="home_hint_custom_cup">500</string>
 
     <string name="state_title_empty">Ayo Minum Air Putih</string>
     <string name="state_text_empty">Halo kamu belum minum air putih hari ini. Ayo jangan sampai lupa untuk meminum air putih ya.</string>

@@ -161,14 +161,6 @@
                 android:textColor="@color/blue_primary"
                 app:minumin_text_code="p_a_b" />
 
-            <id.co.minumin.presentation.view.ProFeatureView
-                android:id="@+id/main_proview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginTop="10sp" />
-
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

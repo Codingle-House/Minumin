@@ -15,6 +15,7 @@
     <string name="general_text_delete">Delete</string>
     <string name="general_text_explore">Explore</string>
     <string name="general_text_custom">Custom</string>
+    <string name="general_text_size">Size</string>
 
     <string name="splashscreen_text_motto">"\"Live healthy by drinking enough water\""</string>
 
@@ -96,6 +97,9 @@
     <string name="home_text_tips">Keep your body hydrated by drinking enough water</string>
     <string name="home_title_history">Today History</string>
     <string name="home_text_item_drink">You have drunk water as much as %s</string>
+    <string name="home_title_custom_cup">Customize Your Cup Size</string>
+    <string name="home_error_custom_cup">Size cannot be empty</string>
+    <string name="home_hint_custom_cup">500</string>
 
     <string name="state_title_empty">Let\'s Drink Water</string>
     <string name="state_text_empty">Hello, you haven\'t drunk water today. Come on, don\'t forget to drink water.</string>
