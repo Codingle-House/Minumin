@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/general_bg_dialog"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/item_rl_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_10sdp">
+
+        <id.co.minumin.uikit.MinuminTextView
+            android:id="@+id/item_tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_10sdp"
+            android:text="@string/dialog_text_physical_active"
+            app:drawableStartCompat="@drawable/general_ic_bodyactive"
+            app:minumin_text_code="p_a_r" />
+
+        <id.co.minumin.uikit.MinuminTextView
+            android:id="@+id/item_tv_ml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/dialog_value_physical_active"
+            android:textColor="@color/blue_primary" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray" />
+</LinearLayout>
