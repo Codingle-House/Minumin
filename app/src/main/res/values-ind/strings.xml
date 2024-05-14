@@ -14,6 +14,7 @@
     <string name="general_text_edit">Ubah</string>
     <string name="general_text_delete">Hapus</string>
     <string name="general_text_explore">Lihat</string>
+    <string name="general_text_custom">Custom</string>
 
     <string name="splashscreen_text_motto">"\"Hidup sehat dengan cukup minum air putih\""</string>
 

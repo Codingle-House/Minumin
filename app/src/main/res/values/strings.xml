@@ -14,6 +14,7 @@
     <string name="general_text_edit">Edit</string>
     <string name="general_text_delete">Delete</string>
     <string name="general_text_explore">Explore</string>
+    <string name="general_text_custom">Custom</string>
 
     <string name="splashscreen_text_motto">"\"Live healthy by drinking enough water\""</string>
 
