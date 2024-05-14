@@ -12,7 +12,6 @@ import id.co.minumin.data.dto.UserRegisterDto
 import id.co.minumin.data.dto.WeatherConditionDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
-import id.co.minumin.util.SingleLiveEvent
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.*
@@ -37,12 +36,15 @@ class MainViewModel @Inject constructor(
     fun observeLiveDataMerger(): LiveData<Triple<WeatherConditionDto, UserRegisterDto, PhysicalActivitiesDto>> =
         liveDataMerger
 
-
-    private val cupSelection = MutableLiveData<CupSelectionDto>()
-    fun observeCupSelection(): LiveData<CupSelectionDto> = cupSelection
+    private var liveDataWaterAndCupMerger = MutableLiveData<Pair<CupSelectionDto, Int>>()
+    fun observeLiveDataWaterAndCupMerger(): LiveData<Pair<CupSelectionDto, Int>> =
+        liveDataWaterAndCupMerger
 
     private val waterConsumption = MutableLiveData<List<DrinkDto>>()
     fun observeWaterConsumption(): LiveData<List<DrinkDto>> = waterConsumption
+
+    private val customCupSize = MutableLiveData<Int>()
+    fun observeCustomCupSize(): LiveData<Int> = customCupSize
 
     fun updateWeatherCondition(weatherConditionDto: WeatherConditionDto) {
         viewModelScope.launch {
@@ -102,16 +104,25 @@ class MainViewModel @Inject constructor(
 
 
     fun updateCupSelection(cupSelectionDto: CupSelectionDto) = viewModelScope.launch {
-        userPreferenceManager.updateCupSelection(cupSelectionDto)
-            .collect { cupSelection.postValue(it) }
+        val customCupSizeFlow = userPreferenceManager.getCustomCupSize()
+        val cupSelectionFlow = userPreferenceManager.updateCupSelection(cupSelectionDto)
+
+        cupSelectionFlow.combine(customCupSizeFlow) { cupSize, cupSelection ->
+            Pair(cupSize, cupSelection)
+        }.collect { liveDataWaterAndCupMerger.postValue(it) }
     }
 
-    private fun getCupSelection() {
-        viewModelScope.launch {
-            userPreferenceManager.getCupSelection().collect {
-                cupSelection.postValue(it)
-            }
-        }
+    fun updateCustomCupSize(size: Int) = viewModelScope.launch {
+        userPreferenceManager.updateCustomCupSize(size).collect { customCupSize.postValue(it) }
+    }
+
+    private fun getCupSelection() = viewModelScope.launch {
+        val customCupSizeFlow = userPreferenceManager.getCustomCupSize()
+        val cupSelectionFlow = userPreferenceManager.getCupSelection()
+
+        cupSelectionFlow.combine(customCupSizeFlow) { cupSize, cupSelection ->
+            Pair(cupSize, cupSelection)
+        }.collect { liveDataWaterAndCupMerger.postValue(it) }
     }
 
     fun drinkWater(drinkDto: DrinkDto) {

@@ -15,5 +15,6 @@ enum class CupSelectionDto(val capacity: Int) {
     CUP_150(SIZE_150),
     CUP_200(SIZE_200),
     CUP_300(SIZE_300),
-    CUP_400(SIZE_400)
+    CUP_400(SIZE_400),
+    CUP_CUSTOM(-1)
 }

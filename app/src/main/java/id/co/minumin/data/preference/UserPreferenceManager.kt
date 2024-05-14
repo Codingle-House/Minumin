@@ -55,7 +55,7 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
                 weatherCondition = dataMapper.convertWeatherDtoToProto(weather)
             }.build()
         }
-        return context.dataStore.data.map { dataMapper.convertToWeatherDto(it.weatherCondition) }
+        return getWeatherCondition()
     }
 
     fun getWeatherCondition() = context.dataStore.data.map {
@@ -68,7 +68,7 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
                 physicalCondition = dataMapper.convertPhysicalDtoToProto(weather)
             }.build()
         }
-        return context.dataStore.data.map { dataMapper.convertToPhysycalDto(it.physicalCondition) }
+        return getPhysicalActivities()
     }
 
     fun getPhysicalActivities() = context.dataStore.data.map {
@@ -80,12 +80,21 @@ class UserPreferenceManager(private val context: Context, private val dataMapper
         context.dataStore.updateData { user ->
             user.toBuilder().apply { glassSelection = dataMapper.convertCupDtoToProto(cup) }.build()
         }
-        return context.dataStore.data.map { dataMapper.convertToCupDto(it.glassSelection) }
+        return getCupSelection()
+    }
+
+    suspend fun updateCustomCupSize(size: Int): Flow<Int> {
+        context.dataStore.updateData { user ->
+            user.toBuilder().apply { customCupSize = size }.build()
+        }
+        return getCustomCupSize()
     }
 
     fun getCupSelection() = context.dataStore.data.map {
         dataMapper.convertToCupDto(it.glassSelection)
     }
+
+    fun getCustomCupSize() = context.dataStore.data.map { it.customCupSize }
 
     suspend fun updateLanguageSelection(language: LanguageDto) {
         context.dataStore.updateData { user ->

@@ -1,9 +1,6 @@
 package id.co.minumin.presentation.home.main
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isGone
@@ -12,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseFragment
-import id.co.minumin.const.MinuminConstant.Time.MILLIS
 import id.co.minumin.core.DiffCallback
 import id.co.minumin.core.DividerItemDecoration
 import id.co.minumin.core.ext.getDrawableCompat
@@ -22,6 +18,7 @@ import id.co.minumin.data.dto.CupSelectionDto.CUP_150
 import id.co.minumin.data.dto.CupSelectionDto.CUP_200
 import id.co.minumin.data.dto.CupSelectionDto.CUP_300
 import id.co.minumin.data.dto.CupSelectionDto.CUP_400
+import id.co.minumin.data.dto.CupSelectionDto.CUP_CUSTOM
 import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.dto.PhysicalActivitiesDto
 import id.co.minumin.data.dto.PhysicalActivitiesDto.ACTIVE
@@ -34,12 +31,10 @@ import id.co.minumin.data.dto.WeatherConditionDto.WARM
 import id.co.minumin.data.dto.WeatherConditionDto.WINTER
 import id.co.minumin.databinding.FragmentMainBinding
 import id.co.minumin.presentation.dialog.CupSelectionDialog
-import id.co.minumin.presentation.dialog.LoadingDialog
+import id.co.minumin.presentation.dialog.InputCupDialog
 import id.co.minumin.presentation.dialog.PhysicalActivitiesDialog
 import id.co.minumin.presentation.dialog.WeatherConditionDialog
 import id.co.minumin.presentation.home.adapter.DrinkAdapter
-import id.co.minumin.presentation.pro.ProActivity
-import id.co.minumin.presentation.view.ProFeatureView
 import id.co.minumin.util.DateTimeUtil.FULL_DATE_FORMAT
 import id.co.minumin.util.DateTimeUtil.convertDate
 import id.co.minumin.util.DateTimeUtil.getCurrentDate
@@ -69,11 +64,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private val currentDate by lazy { getCurrentDate() }
 
     private val drinkAdapter by lazy {
-        DrinkAdapter(
-            requireContext(),
-            diffCallback,
-            itemListener = ::drinkItemListener
-        )
+        DrinkAdapter(requireContext(), diffCallback, itemListener = ::drinkItemListener)
     }
 
     private var selectedCupCapacity: Int = 0
@@ -91,7 +82,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun observeViewModel() = with(mainViewModel) {
         observeLiveDataMerger().onResult { handleMergedLiveData(it) }
-        observeCupSelection().onResult { handleCupSelectionLiveData(it) }
+        observeLiveDataWaterAndCupMerger().onResult {
+            if (it.first != CUP_CUSTOM) {
+                selectedCupCapacity = it.first.capacity
+            } else {
+                selectedCupCapacity = it.second
+            }
+            handleCupSelectionLiveData(it.first)
+        }
         observeWaterConsumption().onResult { handleDrinkListLiveData(it) }
     }
 
@@ -112,7 +110,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
         mainTextviewCupSelection.setOnClickListener {
             CupSelectionDialog.newInstance(requireContext()).apply {
-                setListener { mainViewModel.updateCupSelection(it) }
+                setListener {
+                    if (it == CUP_CUSTOM) {
+                        InputCupDialog.newInstance(context, selectedCupCapacity).apply {
+                            setListener { size -> mainViewModel.updateCustomCupSize(size) }
+                        }.show()
+                    }
+                    mainViewModel.updateCupSelection(it)
+                }
                 show()
             }
         }
@@ -135,27 +140,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             NestedScrollViewOverScrollDecorAdapter(binding.mainScrollview)
         )
         binding.mainTextviewPercentage.text = "0%"
-        with(binding.mainProview) {
-            setListener { action ->
-                when (action) {
-                    ProFeatureView.Action.Click -> {
-                        val intent = Intent(
-                            context,
-                            ProActivity::class.java
-                        )
-                        startActivity(intent)
-                        activity?.overridePendingTransition(
-                            R.anim.anim_fade_in,
-                            R.anim.anim_fade_out
-                        )
-                    }
-
-                    ProFeatureView.Action.Close -> {
-
-                    }
-                }
-            }
-        }
     }
 
     private fun initRecyclerView() {
@@ -221,7 +205,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun handleCupSelectionLiveData(cupSelectionDto: CupSelectionDto) {
-        selectedCupCapacity = cupSelectionDto.capacity
         binding.mainImageviewCup.setImageDrawable(
             context?.getDrawableCompat(
                 when (cupSelectionDto) {
@@ -230,6 +213,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     CUP_200 -> R.drawable.general_ic_cupadd_200
                     CUP_300 -> R.drawable.general_ic_cupadd_300
                     CUP_400 -> R.drawable.general_ic_cupadd_400
+                    CUP_CUSTOM -> R.drawable.general_ic_cupadd_custom
                 }
             )
         )

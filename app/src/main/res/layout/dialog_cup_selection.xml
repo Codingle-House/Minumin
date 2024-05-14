@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginVertical="@dimen/_20sdp"
+            android:layout_marginVertical="@dimen/_16sdp"
             android:text="@string/dialog_title_cup_selection" />
 
         <LinearLayout
@@ -50,8 +50,8 @@
             </LinearLayout>
 
             <View
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp" />
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp" />
 
             <LinearLayout
                 android:id="@+id/cup_linear_150"
@@ -78,8 +78,8 @@
             </LinearLayout>
 
             <View
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp" />
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp" />
 
             <LinearLayout
                 android:id="@+id/cup_linear_200"
@@ -111,7 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginVertical="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
             android:weightSum="3">
 
             <LinearLayout
@@ -139,8 +140,8 @@
             </LinearLayout>
 
             <View
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp" />
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp" />
 
             <LinearLayout
                 android:id="@+id/cup_linear_400"
@@ -167,8 +168,8 @@
             </LinearLayout>
 
             <View
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp" />
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp" />
 
             <LinearLayout
                 android:id="@+id/cup_linear_custom"

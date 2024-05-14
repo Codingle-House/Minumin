@@ -20,6 +20,7 @@ import id.co.minumin.data.dto.CupSelectionDto.CUP_100
 import id.co.minumin.data.dto.CupSelectionDto.CUP_150
 import id.co.minumin.data.dto.CupSelectionDto.CUP_200
 import id.co.minumin.data.dto.CupSelectionDto.CUP_300
+import id.co.minumin.data.dto.CupSelectionDto.CUP_400
 import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.databinding.ItemRecyclerviewDrinkBinding
 import id.co.minumin.presentation.home.adapter.DrinkAdapter.MenuAction.Delete
@@ -80,7 +81,8 @@ class DrinkAdapter(
                 CUP_150.capacity -> R.drawable.general_ic_cup_150
                 CUP_200.capacity -> R.drawable.general_ic_cup_200
                 CUP_300.capacity -> R.drawable.general_ic_cup_300
-                else -> R.drawable.general_ic_cup_400
+                CUP_400.capacity -> R.drawable.general_ic_cup_400
+                else -> R.drawable.general_ic_cup_custom
             }
             binding.drinkImageviewCup.setImageDrawable(context.getDrawableCompat(icon))
             binding.drinkImageviewMenu.setOnClickListener { showPopUp(binding, data) }
