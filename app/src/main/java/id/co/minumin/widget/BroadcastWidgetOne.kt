@@ -7,20 +7,17 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
-import android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP
 import android.widget.RemoteViews
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
-import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.util.DateTimeUtil
 import id.co.minumin.util.DateTimeUtil.convertDate
 import id.co.minumin.util.DateTimeUtil.getCurrentDate
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -45,42 +42,23 @@ class BroadcastWidgetOne : AppWidgetProvider() {
     }
 
     private val job = SupervisorJob()
-    val coroutineScope = CoroutineScope(Dispatchers.IO + job)
+    val coroutineScope = CoroutineScope(IO + job)
 
     private fun updateAppWidget(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetId: Int
     ) {
-
         coroutineScope.launch {
-            userPreferenceManager.getPurchaseStatus().collect {
-                if (it) {
-                    val views = RemoteViews(context.packageName, R.layout.widget_one)
-                    val intent = Intent(context, BroadcastWidgetOne::class.java)
-                    intent.action = ACTION_ADD
-                    val pendingIntent = PendingIntent.getBroadcast(
-                        context, 0, intent,
-                        FLAG_UPDATE_CURRENT
-                    )
-                    views.setOnClickPendingIntent(R.id.widget_cardview_add_1, pendingIntent)
-                    appWidgetManager.updateAppWidget(appWidgetId, views)
-                } else {
-                    val views = RemoteViews(context.packageName, R.layout.widget_one)
-                    val pendingIntent = Intent(context, ProActivity::class.java)
-                    pendingIntent.flags =
-                        FLAG_ACTIVITY_CLEAR_TOP or FLAG_ACTIVITY_SINGLE_TOP
-                    val contentIntent =
-                        PendingIntent.getActivity(
-                            context,
-                            REQUEST_CODE,
-                            pendingIntent,
-                            FLAG_UPDATE_CURRENT
-                        )
-                    views.setOnClickPendingIntent(R.id.widget_cardview_add_1, contentIntent)
-                    appWidgetManager.updateAppWidget(appWidgetId, views)
-                }
-            }
+            val views = RemoteViews(context.packageName, R.layout.widget_one)
+            val intent = Intent(context, BroadcastWidgetOne::class.java)
+            intent.action = ACTION_ADD
+            val pendingIntent = PendingIntent.getBroadcast(
+                context, 0, intent,
+                FLAG_UPDATE_CURRENT
+            )
+            views.setOnClickPendingIntent(R.id.widget_cardview_add_1, pendingIntent)
+            appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
 
@@ -126,7 +104,7 @@ class BroadcastWidgetOne : AppWidgetProvider() {
                 time = DateTimeUtil.getCurrentTime(),
                 consumption = selectedCupCapacity
             )
-            val total = repository.doDrinkWaterAndGet(drinkDto).sumBy { list -> list.consumption }
+            val total = repository.doDrinkWaterAndGet(drinkDto).sumOf { list -> list.consumption }
 
 
             updateWidget(context, waterNeeds, total)

@@ -1,6 +1,5 @@
 package id.co.minumin.util
 
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar.DAY_OF_MONTH
@@ -63,7 +62,6 @@ object DateTimeUtil {
 
     fun getDayCurrentWeek(): List<Date> {
         val list = mutableListOf<Date>()
-        val format: DateFormat = SimpleDateFormat(DEFAULT_DATE, Locale.getDefault())
         val calendar = Calendar.getInstance()
         calendar.firstDayOfWeek = Calendar.MONDAY
         calendar[Calendar.DAY_OF_WEEK] = Calendar.MONDAY

@@ -6,7 +6,10 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
+import android.view.Window.FEATURE_NO_TITLE
 import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.MATCH_PARENT
+import android.view.WindowManager.LayoutParams.WRAP_CONTENT
 import androidx.viewbinding.ViewBinding
 
 /**
@@ -30,12 +33,9 @@ abstract class MinuminDialog<VB : ViewBinding>(
     }
 
     private fun setupDialog() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        requestWindowFeature(FEATURE_NO_TITLE)
         window?.setBackgroundDrawableResource(android.R.color.transparent);
-        window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
-        )
+        window?.setLayout(MATCH_PARENT, WRAP_CONTENT)
     }
 
     abstract fun onCreateDialog()

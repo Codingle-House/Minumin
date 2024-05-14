@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.notifications.helper.NotificationHelper
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,12 +21,12 @@ class NotifierReceiver : HiltBroadcastReceiver() {
     @Inject
     lateinit var notificationHelper: NotificationHelper
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
 
         /* Notify */
         GlobalScope.launch(Dispatchers.IO) {
-            @SuppressLint("ResourceType")
             val nBuilder = notificationHelper.getNotificationReminder(true)
             notificationHelper.notify(2, nBuilder, false)
         }

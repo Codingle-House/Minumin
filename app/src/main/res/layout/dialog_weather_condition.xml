@@ -1,146 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/general_bg_dialog">
+    android:layout_gravity="center"
+    android:background="@drawable/general_bg_dialog"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <id.co.minumin.uikit.MinuminTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:text="@string/dialog_title_weather" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray" />
+
+    <RelativeLayout
+        android:id="@+id/weather_relativelayout_hot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_10sdp">
 
         <id.co.minumin.uikit.MinuminTextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginVertical="@dimen/_20sdp"
-            android:text="@string/dialog_title_weather" />
+            android:drawablePadding="@dimen/_10sdp"
+            android:text="@string/dialog_text_weather_hot"
+            app:drawableStartCompat="@drawable/general_ic_weatherhot"
+            app:minumin_text_code="p_a_r" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line_gray" />
-
-        <RelativeLayout
-            android:id="@+id/weather_relativelayout_hot"
-            android:layout_width="match_parent"
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_10sdp">
+            android:layout_alignParentEnd="true"
+            android:text="@string/dialog_value_weather_hot"
+            android:textColor="@color/blue_primary" />
+    </RelativeLayout>
 
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/_10sdp"
-                android:text="@string/dialog_text_weather_hot"
-                app:drawableStartCompat="@drawable/general_ic_weatherhot"
-                app:minumin_text_code="p_a_r" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray" />
 
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/dialog_value_weather_hot"
-                android:textColor="@color/blue_primary" />
-        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/weather_relativelayout_warm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_10sdp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line_gray" />
-
-        <RelativeLayout
-            android:id="@+id/weather_relativelayout_warm"
-            android:layout_width="match_parent"
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_10sdp">
+            android:drawablePadding="@dimen/_10sdp"
+            android:text="@string/dialog_text_weather_warm"
+            app:drawableStartCompat="@drawable/general_ic_weatherwarm"
+            app:minumin_text_code="p_a_r" />
 
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/_10sdp"
-                android:text="@string/dialog_text_weather_warm"
-                app:drawableStartCompat="@drawable/general_ic_weatherwarm"
-                app:minumin_text_code="p_a_r" />
-
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/dialog_value_weather_warm"
-                android:textColor="@color/blue_primary" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line_gray" />
-
-        <RelativeLayout
-            android:id="@+id/weather_relativelayout_normal"
-            android:layout_width="match_parent"
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_10sdp">
+            android:layout_alignParentEnd="true"
+            android:text="@string/dialog_value_weather_warm"
+            android:textColor="@color/blue_primary" />
+    </RelativeLayout>
 
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/_10sdp"
-                android:text="@string/dialog_text_weather_normal"
-                app:drawableStartCompat="@drawable/general_ic_weathernormal"
-                app:minumin_text_code="p_a_r" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray" />
 
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/dialog_value_weather_normal"
-                android:textColor="@color/blue_primary" />
-        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/weather_relativelayout_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_10sdp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line_gray" />
-
-        <RelativeLayout
-            android:id="@+id/weather_relativelayout_winter"
-            android:layout_width="match_parent"
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_10sdp">
+            android:drawablePadding="@dimen/_10sdp"
+            android:text="@string/dialog_text_weather_normal"
+            app:drawableStartCompat="@drawable/general_ic_weathernormal"
+            app:minumin_text_code="p_a_r" />
 
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/_10sdp"
-                android:text="@string/dialog_text_weather_winter"
-                app:drawableStartCompat="@drawable/general_ic_weatherwinter"
-                app:minumin_text_code="p_a_r" />
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/dialog_value_weather_normal"
+            android:textColor="@color/blue_primary" />
+    </RelativeLayout>
 
-            <id.co.minumin.uikit.MinuminTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/dialog_value_weather_winter"
-                android:textColor="@color/blue_primary" />
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray" />
+
+    <RelativeLayout
+        android:id="@+id/weather_relativelayout_winter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_10sdp">
+
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_10sdp"
+            android:text="@string/dialog_text_weather_winter"
+            app:drawableStartCompat="@drawable/general_ic_weatherwinter"
+            app:minumin_text_code="p_a_r" />
+
+        <id.co.minumin.uikit.MinuminTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/dialog_value_weather_winter"
+            android:textColor="@color/blue_primary" />
+    </RelativeLayout>
+</LinearLayout>

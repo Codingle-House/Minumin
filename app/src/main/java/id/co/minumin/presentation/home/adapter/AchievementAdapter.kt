@@ -29,7 +29,7 @@ class AchievementAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bindView(dataSet[holder.adapterPosition])
+        holder.bindView(dataSet[holder.bindingAdapterPosition])
     }
 
     override fun getItemCount(): Int = dataSet.size

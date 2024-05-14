@@ -1,6 +1,5 @@
 package id.co.minumin.presentation.home.history
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isGone
@@ -33,10 +32,7 @@ import id.co.minumin.databinding.ViewSinglecalendarBinding
 import id.co.minumin.presentation.dialog.CupSelectionDialog
 import id.co.minumin.presentation.home.adapter.AchievementAdapter
 import id.co.minumin.presentation.home.adapter.DrinkAdapter
-import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.presentation.view.CustomChartMarkerView
-import id.co.minumin.presentation.view.ProFeatureView.Action.Click
-import id.co.minumin.presentation.view.ProFeatureView.Action.Close
 import id.co.minumin.uikit.TextColor
 import id.co.minumin.util.DateTimeUtil.SEVEN_DAYS
 import id.co.minumin.util.DateTimeUtil.THIRTY_DAYS
@@ -141,24 +137,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         VerticalOverScrollBounceEffectDecorator(
             NestedScrollViewOverScrollDecorAdapter(binding.historyScrollview)
         )
-        with(binding.historyProview) {
-            setListener { action ->
-                when (action) {
-                    Click -> {
-                        val intent = Intent(context, ProActivity::class.java)
-                        startActivity(intent)
-                        activity?.overridePendingTransition(
-                            R.anim.anim_fade_in,
-                            R.anim.anim_fade_out
-                        )
-                    }
-
-                    Close -> {
-
-                    }
-                }
-            }
-        }
     }
 
     private fun initDayFrameListener() {
@@ -329,9 +307,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
 
     private fun handleDrinkListLiveDataByDate(list: List<DrinkDto>) {
         val chartList = list.groupBy { data -> data.date }.map { map ->
-            WaterConsumptionDto(
-                map.key,
-                map.value.sumBy { sum -> sum.consumption })
+            WaterConsumptionDto(map.key, map.value.sumOf { sum -> sum.consumption })
         }
 
         val timeFrameList =
@@ -350,7 +326,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
                 }
             )
         setBarData(result)
-        val totalWater = result.sumBy { it.consumption }
+        val totalWater = result.sumOf { it.consumption }
         binding.historyTextviewTotalWater.text =
             getString(R.string.general_placeholder_ml, totalWater.toString())
         binding.historyTextviewAverageWater.text = getString(

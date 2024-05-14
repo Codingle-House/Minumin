@@ -13,7 +13,6 @@ import id.co.minumin.R
 import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
-import id.co.minumin.presentation.pro.ProActivity
 import id.co.minumin.util.DateTimeUtil
 import id.co.minumin.util.DateTimeUtil.convertDate
 import id.co.minumin.util.DateTimeUtil.getCurrentTime
@@ -53,34 +52,18 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
 
         coroutineScope.launch {
             userPreferenceManager.getPurchaseStatus().collect {
-                if (it) {
-                    val views = RemoteViews(context.packageName, R.layout.widget_two)
-                    val intent = Intent(context, BroadcastWidgetTwo::class.java)
-                    intent.action = ACTION_ADD
-                    val pendingIntent = PendingIntent.getBroadcast(
-                        context,
-                        0,
-                        intent,
-                        FLAG_UPDATE_CURRENT
-                    )
+                val views = RemoteViews(context.packageName, R.layout.widget_two)
+                val intent = Intent(context, BroadcastWidgetTwo::class.java)
+                intent.action = ACTION_ADD
+                val pendingIntent = PendingIntent.getBroadcast(
+                    context,
+                    0,
+                    intent,
+                    FLAG_UPDATE_CURRENT
+                )
 
-                    views.setOnClickPendingIntent(R.id.widget_cardview_add_2, pendingIntent)
-                    appWidgetManager.updateAppWidget(appWidgetId, views)
-                } else {
-                    val views = RemoteViews(context.packageName, R.layout.widget_two)
-                    val pendingIntent = Intent(context, ProActivity::class.java)
-                    pendingIntent.flags =
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    val contentIntent =
-                        PendingIntent.getActivity(
-                            context,
-                            REQUEST_CODE,
-                            pendingIntent,
-                            FLAG_UPDATE_CURRENT
-                        )
-                    views.setOnClickPendingIntent(R.id.widget_cardview_add_2, contentIntent)
-                    appWidgetManager.updateAppWidget(appWidgetId, views)
-                }
+                views.setOnClickPendingIntent(R.id.widget_cardview_add_2, pendingIntent)
+                appWidgetManager.updateAppWidget(appWidgetId, views)
             }
         }
     }
@@ -146,7 +129,7 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
             val waterNeeds =
                 it.first.consumption + it.second.waterNeeds + it.third.consumption
             val total =
-                repository.getDrinkWater(currentDate).sumBy { list -> list.consumption }
+                repository.getDrinkWater(currentDate).sumOf { list -> list.consumption }
 
             updateWidget(context, waterNeeds, total)
         }

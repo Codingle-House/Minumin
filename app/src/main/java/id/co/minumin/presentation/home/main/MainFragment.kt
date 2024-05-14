@@ -220,7 +220,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun handleDrinkListLiveData(list: List<DrinkDto>) {
-        currentWaterConsumption = list.sumBy { data -> data.consumption }
+        currentWaterConsumption = list.sumOf { data -> data.consumption }
         drinkAdapter.setData(list)
         binding.mainPlaceholder.root.isGone = list.isNotEmpty()
         binding.mainRecyclerviewDrink.isGone = list.isEmpty()

@@ -85,7 +85,7 @@ class WidgetPreviewActivity : BaseActivity<ActivityWidgetPreviewBinding>() {
     }
 
     private fun handleDrinkListLiveData(list: List<DrinkDto>) {
-        currentWaterConsumption = list.sumBy { data -> data.consumption }
+        currentWaterConsumption = list.sumOf { data -> data.consumption }
         calculatePersentage()
     }
 
