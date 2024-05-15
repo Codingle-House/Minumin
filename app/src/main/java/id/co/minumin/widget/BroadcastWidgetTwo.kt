@@ -49,7 +49,6 @@ class BroadcastWidgetTwo : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetId: Int
     ) {
-
         coroutineScope.launch {
             userPreferenceManager.getPurchaseStatus().collect {
                 val views = RemoteViews(context.packageName, R.layout.widget_two)
