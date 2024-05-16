@@ -32,8 +32,8 @@ import id.co.minumin.data.dto.WeatherConditionDto.WINTER
 import id.co.minumin.databinding.FragmentMainBinding
 import id.co.minumin.presentation.dialog.CupSelectionDialog
 import id.co.minumin.presentation.dialog.InputCupDialog
-import id.co.minumin.presentation.dialog.WeatherConditionDialog
 import id.co.minumin.presentation.dialog.physicalactivities.PhysicalActivitiesDialog
+import id.co.minumin.presentation.dialog.weathercondition.WeatherConditionDialog
 import id.co.minumin.presentation.home.adapter.DrinkAdapter
 import id.co.minumin.util.DateTimeUtil.FULL_DATE_FORMAT
 import id.co.minumin.util.DateTimeUtil.convertDate
@@ -95,7 +95,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private fun initHeaderListener() = with(binding) {
         mainImageviewWeather.setOnClickListener {
-            WeatherConditionDialog.newInstance(requireContext()).apply {
+            WeatherConditionDialog.newInstance(requireContext(), diffCallback).apply {
                 setListener { mainViewModel.updateWeatherCondition(it) }
                 show()
             }
