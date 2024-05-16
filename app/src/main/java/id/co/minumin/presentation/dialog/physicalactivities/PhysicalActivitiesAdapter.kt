@@ -61,39 +61,25 @@ class PhysicalActivitiesAdapter(
             itemRlParent.setOnClickListener { itemListener.invoke(data) }
             line.isGone = bindingAdapterPosition == dataSet.size.dec()
             itemTvMl.text = "+${data.consumption}${context.getString(R.string.general_text_ml)}"
+            val (title, drawable) = getTextAndImage(data)
             itemTvText.apply {
-                when (data) {
-                    NORMAL -> {
-                        text = context.getString(R.string.dialog_text_physical_normal)
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            context.getDrawableCompat(R.drawable.general_ic_bodynormal),
-                            null,
-                            null,
-                            null
-                        )
-                    }
-
-                    ACTIVE -> {
-                        text = context.getString(R.string.dialog_text_physical_active)
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            context.getDrawableCompat(R.drawable.general_ic_bodyactive),
-                            null,
-                            null,
-                            null
-                        )
-                    }
-
-                    VERY_ACTIVE -> {
-                        text = context.getString(R.string.dialog_text_physical_extraactive)
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            context.getDrawableCompat(R.drawable.general_ic_bodyextraactive),
-                            null,
-                            null,
-                            null
-                        )
-                    }
-                }
+                text = context.getString(title)
+                setCompoundDrawablesWithIntrinsicBounds(
+                    context.getDrawableCompat(drawable),
+                    null,
+                    null,
+                    null
+                )
             }
+        }
+
+        private fun getTextAndImage(data: PhysicalActivitiesDto) = when (data) {
+            NORMAL -> Pair(R.string.dialog_text_physical_normal, R.drawable.general_ic_bodynormal)
+            ACTIVE -> Pair(R.string.dialog_text_physical_active, R.drawable.general_ic_bodyactive)
+            VERY_ACTIVE -> Pair(
+                R.string.dialog_text_physical_extraactive,
+                R.drawable.general_ic_bodyextraactive
+            )
         }
     }
 }
