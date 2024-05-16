@@ -19,9 +19,9 @@ class WaterConsumptionDialog(
 
     private var action: (Int) -> Unit = { _ -> kotlin.run { } }
 
-    override fun onCreateDialog() {
-        binding.registerFormWater.setText(waterConsumption.toString())
-        binding.registerButtonSubmit.setOnClickListener {
+    override fun onCreateDialog() = with(binding) {
+        registerFormWater.setText(waterConsumption.toString())
+        registerButtonSubmit.setOnClickListener {
             with(binding.registerFormWater) {
                 if (getFormText().isEmpty()) {
                     showError(true)
@@ -29,8 +29,8 @@ class WaterConsumptionDialog(
                 }
             }
 
-            waterConsumption = binding.registerFormWater.getFormText().toInt()
-            with(binding.registerFormWater) {
+            waterConsumption = registerFormWater.getFormText().toInt()
+            with(registerFormWater) {
                 if (waterConsumption == 0) {
                     showError(true)
                     return@setOnClickListener
