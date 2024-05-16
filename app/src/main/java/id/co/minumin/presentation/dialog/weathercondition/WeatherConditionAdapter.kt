@@ -58,49 +58,23 @@ class WeatherConditionAdapter(
             itemRlParent.setOnClickListener { itemListener.invoke(data) }
             line.isGone = bindingAdapterPosition == dataSet.size.dec()
             itemTvMl.text = "+${data.consumption}${context.getString(R.string.general_text_ml)}"
+            val (title, drawable) = getTextAndImage(data)
             itemTvText.apply {
-                when (data) {
-                    NORMAL -> {
-                        text = context.getString(R.string.dialog_text_weather_normal)
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            context.getDrawableCompat(R.drawable.general_ic_weathernormal),
-                            null,
-                            null,
-                            null
-                        )
-                    }
-
-                    WINTER -> {
-                        text = context.getString(R.string.dialog_text_weather_winter)
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            context.getDrawableCompat(R.drawable.general_ic_weatherwinter),
-                            null,
-                            null,
-                            null
-                        )
-                    }
-
-                    WARM -> {
-                        text = context.getString(R.string.dialog_text_weather_warm)
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            context.getDrawableCompat(R.drawable.general_ic_weatherwarm),
-                            null,
-                            null,
-                            null
-                        )
-                    }
-
-                    HOT -> {
-                        text = context.getString(R.string.dialog_text_weather_hot)
-                        setCompoundDrawablesWithIntrinsicBounds(
-                            context.getDrawableCompat(R.drawable.general_ic_weatherhot),
-                            null,
-                            null,
-                            null
-                        )
-                    }
-                }
+                text = context.getString(title)
+                setCompoundDrawablesWithIntrinsicBounds(
+                    context.getDrawableCompat(drawable),
+                    null,
+                    null,
+                    null
+                )
             }
+        }
+
+        private fun getTextAndImage(data: WeatherConditionDto) = when (data) {
+            NORMAL -> Pair(R.string.dialog_text_weather_normal, R.drawable.general_ic_weathernormal)
+            WINTER -> Pair(R.string.dialog_text_weather_winter, R.drawable.general_ic_weatherwinter)
+            WARM -> Pair(R.string.dialog_text_weather_warm, R.drawable.general_ic_weatherwarm)
+            HOT -> Pair(R.string.dialog_text_weather_hot, R.drawable.general_ic_weatherhot)
         }
     }
 }
