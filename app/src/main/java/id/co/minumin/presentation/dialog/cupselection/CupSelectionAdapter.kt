@@ -16,7 +16,6 @@ import id.co.minumin.data.dto.CupSelectionDto.CUP_200
 import id.co.minumin.data.dto.CupSelectionDto.CUP_300
 import id.co.minumin.data.dto.CupSelectionDto.CUP_400
 import id.co.minumin.data.dto.CupSelectionDto.CUP_CUSTOM
-import id.co.minumin.data.dto.PhysicalActivitiesDto
 import id.co.minumin.databinding.ItemRecyclerviewCupselectionBinding
 
 class CupSelectionAdapter(
@@ -90,23 +89,6 @@ class CupSelectionAdapter(
             cupselectionIvCapacity.text = capacity
             cupselectionIvCup.setImageDrawable(context.getDrawableCompat(image))
             cupParent.setOnClickListener { itemListener(data) }
-        }
-
-        private fun getTextAndImage(data: PhysicalActivitiesDto) = when (data) {
-            PhysicalActivitiesDto.NORMAL -> Pair(
-                R.string.dialog_text_physical_normal,
-                R.drawable.general_ic_bodynormal
-            )
-
-            PhysicalActivitiesDto.ACTIVE -> Pair(
-                R.string.dialog_text_physical_active,
-                R.drawable.general_ic_bodyactive
-            )
-
-            PhysicalActivitiesDto.VERY_ACTIVE -> Pair(
-                R.string.dialog_text_physical_extraactive,
-                R.drawable.general_ic_bodyextraactive
-            )
         }
     }
 }
