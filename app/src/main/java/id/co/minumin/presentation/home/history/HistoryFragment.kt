@@ -29,7 +29,7 @@ import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.dto.WaterConsumptionDto
 import id.co.minumin.databinding.FragmentHistoryBinding
 import id.co.minumin.databinding.ViewSinglecalendarBinding
-import id.co.minumin.presentation.dialog.CupSelectionDialog
+import id.co.minumin.presentation.dialog.cupselection.CupSelectionDialog
 import id.co.minumin.presentation.home.adapter.AchievementAdapter
 import id.co.minumin.presentation.home.adapter.DrinkAdapter
 import id.co.minumin.presentation.view.CustomChartMarkerView
@@ -182,8 +182,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
 
         with(binding.historyRecyclerviewAchievement) {
             adapter = achievementAdapter
-            layoutManager =
-                GridLayoutManager(requireContext(), SPAN_COUNT, VERTICAL, false)
+            layoutManager = GridLayoutManager(requireContext(), SPAN_COUNT, VERTICAL, false)
         }
     }
 
@@ -369,7 +368,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             }
 
             is DrinkAdapter.MenuAction.Edit -> {
-                CupSelectionDialog.newInstance(requireContext()).apply {
+                CupSelectionDialog.newInstance(requireContext(), diffCallback).apply {
                     setListener {
                         val newData = action.data.copy(
                             consumption = it.capacity
