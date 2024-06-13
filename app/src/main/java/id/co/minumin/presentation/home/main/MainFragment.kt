@@ -30,11 +30,14 @@ import id.co.minumin.data.dto.WeatherConditionDto.NORMAL
 import id.co.minumin.data.dto.WeatherConditionDto.WARM
 import id.co.minumin.data.dto.WeatherConditionDto.WINTER
 import id.co.minumin.databinding.FragmentMainBinding
-import id.co.minumin.presentation.dialog.CupSelectionDialog
 import id.co.minumin.presentation.dialog.InputCupDialog
+import id.co.minumin.presentation.dialog.cupselection.CupSelectionDialog
 import id.co.minumin.presentation.dialog.physicalactivities.PhysicalActivitiesDialog
 import id.co.minumin.presentation.dialog.weathercondition.WeatherConditionDialog
 import id.co.minumin.presentation.home.adapter.DrinkAdapter
+import id.co.minumin.presentation.home.adapter.DrinkAdapter.MenuAction
+import id.co.minumin.presentation.home.adapter.DrinkAdapter.MenuAction.Delete
+import id.co.minumin.presentation.home.adapter.DrinkAdapter.MenuAction.Edit
 import id.co.minumin.util.DateTimeUtil.FULL_DATE_FORMAT
 import id.co.minumin.util.DateTimeUtil.convertDate
 import id.co.minumin.util.DateTimeUtil.getCurrentDate
@@ -109,7 +112,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
 
         mainTextviewCupSelection.setOnClickListener {
-            CupSelectionDialog.newInstance(requireContext()).apply {
+            CupSelectionDialog.newInstance(requireContext(), diffCallback).apply {
                 setListener {
                     if (it == CUP_CUSTOM) {
                         InputCupDialog.newInstance(context, selectedCupCapacity).apply {
@@ -263,22 +266,20 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
-    private fun drinkItemListener(action: DrinkAdapter.MenuAction) {
+    private fun drinkItemListener(action: MenuAction) {
         when (action) {
-            is DrinkAdapter.MenuAction.Delete -> {
-                val newData = action.data.copy(
-                    isDeleted = true
-                )
-                mainViewModel.doEditDrinkWater(newData, currentDate)
-            }
+            is Delete -> mainViewModel.doEditDrinkWater(
+                action.data.copy(isDeleted = true),
+                currentDate
+            )
 
-            is DrinkAdapter.MenuAction.Edit -> {
-                CupSelectionDialog.newInstance(requireContext()).apply {
+            is Edit -> {
+                CupSelectionDialog.newInstance(requireContext(), diffCallback).apply {
                     setListener {
-                        val newData = action.data.copy(
-                            consumption = it.capacity
+                        mainViewModel.doEditDrinkWater(
+                            action.data.copy(consumption = it.capacity),
+                            currentDate
                         )
-                        mainViewModel.doEditDrinkWater(newData, currentDate)
                     }
                     show()
                 }
