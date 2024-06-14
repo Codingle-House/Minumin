@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.GridLayoutManager
 import id.co.minumin.core.DiffCallback
+import id.co.minumin.core.SpaceItemDecoration
 import id.co.minumin.data.dto.CupSelectionDto
 import id.co.minumin.databinding.DialogCupSelectionBinding
 import id.co.minumin.uikit.MinuminDialog
@@ -35,6 +36,7 @@ class CupSelectionDialog(
             cupselectionRvContent.apply {
                 adapter = cupSelectionAdapter
                 layoutManager = GridLayoutManager(context, SPAN_COUNT)
+                addItemDecoration(SpaceItemDecoration(SPACE, SPAN_COUNT))
             }
         }
     }
@@ -51,6 +53,7 @@ class CupSelectionDialog(
 
     companion object {
         private const val SPAN_COUNT = 3
+        private const val SPACE = 16
 
         fun newInstance(context: Context, diffCallback: DiffCallback) =
             CupSelectionDialog(context, diffCallback)
