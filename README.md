@@ -22,12 +22,28 @@
   - Proto Datastore: Data storage solution to save key-value pairs or typed object with [Protocol Buffer](https://protobuf.dev/)
   - [Hilt](https://dagger.dev/hilt/): for dependency injection.
 - Architecture
-  - MVVM Architecture (View - DataBinding - ViewModel - Model)
+  - MVVM Architecture (View - ViewModel - Model)
   - Repository Pattern
 - Other Libraries
   - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) -> For showing bar chart inside app
   - [SingleRowCalendar](https://github.com/misosvec/SingleRowCalendar) -> Showing horizontal recyclerview of calender
   - [EasyPermission](https://github.com/googlesamples/easypermissions) -> Easily manage android permission
+
+## Architecture Overview
+
+<h3>Minumin is based on the MVVM architecture and the Repository pattern</h3>
+<img src="assets/architecture.png"/>
+
+The overall architecture of **Minumin** is composed of two layers; the UI layer and the data layer. Each layer has dedicated components and they have each different responsibilities, as defined below:
+
+**Minumin** was built with [Guide to app architecture](https://developer.android.com/topic/architecture), so it would be a great sample to show how the architecture works in real-world projects.
+
+### UI Layer
+
+<img src="assets/uilayer.png"/>
+
+The UI layer consists of Activity/Fragment that could interact with users and [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) that holds app states and restores data when configuration changes.
+- Activity/Fragment observe the data by using [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 
 ```
 Designed and developed by 2020 pertadima (Irfan Pertadima)
