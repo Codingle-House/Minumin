@@ -15,6 +15,7 @@ import com.michalsvec.singlerowcalendar.calendar.CalendarViewManager
 import com.michalsvec.singlerowcalendar.calendar.SingleRowCalendarAdapter
 import com.michalsvec.singlerowcalendar.selection.CalendarSelectionManager
 import com.michalsvec.singlerowcalendar.utils.DateUtils
+import com.michalsvec.singlerowcalendar.utils.DateUtils.getDay3LettersName
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.minumin.R
 import id.co.minumin.base.BaseFragment
@@ -24,7 +25,9 @@ import id.co.minumin.core.ext.changeIconColor
 import id.co.minumin.core.ext.convertDateFormat
 import id.co.minumin.core.ext.getDrawableCompat
 import id.co.minumin.data.dto.AchievementDto
-import id.co.minumin.data.dto.AchievementStatusDto
+import id.co.minumin.data.dto.AchievementStatusDto.Done
+import id.co.minumin.data.dto.AchievementStatusDto.Fail
+import id.co.minumin.data.dto.AchievementStatusDto.None
 import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.dto.WaterConsumptionDto
 import id.co.minumin.databinding.FragmentHistoryBinding
@@ -32,6 +35,8 @@ import id.co.minumin.databinding.ViewSinglecalendarBinding
 import id.co.minumin.presentation.dialog.cupselection.CupSelectionDialog
 import id.co.minumin.presentation.home.adapter.AchievementAdapter
 import id.co.minumin.presentation.home.adapter.DrinkAdapter
+import id.co.minumin.presentation.home.adapter.DrinkAdapter.MenuAction.Delete
+import id.co.minumin.presentation.home.adapter.DrinkAdapter.MenuAction.Edit
 import id.co.minumin.presentation.view.CustomChartMarkerView
 import id.co.minumin.uikit.TextColor
 import id.co.minumin.util.DateTimeUtil.SEVEN_DAYS
@@ -89,15 +94,11 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
     private val thirtyDaysAgo by lazy { getDaysAgo(THIRTY_DAYS) }
 
     private val sevenDaysAgoDateList by lazy {
-        getListDaysAgo(SEVEN_DAYS).map {
-            WaterConsumptionDto(convertDate(it).orEmpty())
-        }
+        getListDaysAgo(SEVEN_DAYS).map { WaterConsumptionDto(convertDate(it).orEmpty()) }
     }
 
     private val thirtyDaysAgoDateList by lazy {
-        getListDaysAgo(THIRTY_DAYS).map {
-            WaterConsumptionDto(convertDate(it).orEmpty())
-        }
+        getListDaysAgo(THIRTY_DAYS).map { WaterConsumptionDto(convertDate(it).orEmpty()) }
     }
 
     private val getDaysCurrentWeek by lazy {
@@ -119,17 +120,16 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
         loadData()
     }
 
-    override fun observeViewModel() {
-        with(historyViewModel) {
-            observeWaterConsumption().onResult { list -> handleDrinkListLiveData(list) }
-            observeWaterConsumptionInBetween().onResult { handleDrinkListLiveDataByDate(it) }
-            observeUserCondition().onResult { userWaterNeed = it.waterNeeds }
+    override fun observeViewModel() = with(historyViewModel) {
+        observeWaterConsumption().onResult { list ->
+            loadData()
+            handleDrinkListLiveData(list)
         }
+        observeWaterConsumptionInBetween().onResult { handleDrinkListLiveDataByDate(it) }
+        observeUserCondition().onResult { userWaterNeed = it.waterNeeds }
     }
 
-    private fun loadData() {
-        historyViewModel.getDrinkWaterBetweenDate(sevenDaysAgo, todayDate)
-    }
+    private fun loadData() = historyViewModel.getDrinkWaterBetweenDate(sevenDaysAgo, todayDate)
 
     private fun initUi() {
         binding.historyTextviewDayframe.text =
@@ -168,9 +168,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
 
     private fun initRecyclerView() {
         with(binding.historyRecyclerviewDrink) {
-            adapter = drinkAdapter.apply {
-                setHasStableIds(true)
-            }
+            adapter = drinkAdapter.apply { setHasStableIds(true) }
             layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
             addItemDecoration(
                 DividerItemDecoration(
@@ -309,21 +307,15 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             WaterConsumptionDto(map.key, map.value.sumOf { sum -> sum.consumption })
         }
 
-        val timeFrameList =
-            if (selectedDayFrame == SEVEN_DAYS) sevenDaysAgoDateList else thirtyDaysAgoDateList
+        val timeFrameList = if (selectedDayFrame == SEVEN_DAYS) sevenDaysAgoDateList
+        else thirtyDaysAgoDateList
 
         val result = (timeFrameList + chartList)
             .groupingBy { group -> group.date }
             .reduce { _, accumulator: WaterConsumptionDto, element: WaterConsumptionDto ->
                 accumulator.copy(consumption = element.consumption)
             }.values.toList().reversed()
-            .takeLast(
-                if (selectedDayFrame == SEVEN_DAYS) {
-                    SEVEN_DAYS
-                } else {
-                    THIRTY_DAYS
-                }
-            )
+            .takeLast(if (selectedDayFrame == SEVEN_DAYS) SEVEN_DAYS else THIRTY_DAYS)
         setBarData(result)
         val totalWater = result.sumOf { it.consumption }
         binding.historyTextviewTotalWater.text =
@@ -333,8 +325,6 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             (totalWater / selectedDayFrame).toString()
         )
 
-
-        if (achievementAdapter.itemCount != 0) return
         handleAchievementList(chartList)
     }
 
@@ -347,12 +337,12 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
             .takeLast(SEVEN_DAYS).map {
                 val achievementDate = convertDate(it.date)
                 val status = when {
-                    (achievementDate?.compareTo(todayDate) ?: 0) > 0 -> AchievementStatusDto.None
-                    userWaterNeed > it.consumption -> AchievementStatusDto.Fail
-                    else -> AchievementStatusDto.Done
+                    (achievementDate?.compareTo(todayDate) ?: 0) > 0 -> None
+                    userWaterNeed > it.consumption -> Fail
+                    else -> Done
                 }
                 val date = convertDate(it.date)
-                AchievementDto(status = status, day = DateUtils.getDay3LettersName(date ?: Date()))
+                AchievementDto(status = status, day = getDay3LettersName(date ?: Date()))
             }.reversed()
         binding.historyCardAchievement.isGone = false
         achievementAdapter.setData(achievementResult)
@@ -360,23 +350,17 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>() {
 
     private fun drinkItemListener(action: DrinkAdapter.MenuAction) {
         when (action) {
-            is DrinkAdapter.MenuAction.Delete -> {
-                val newData = action.data.copy(
-                    isDeleted = true
-                )
+            is Delete -> {
+                val newData = action.data.copy(isDeleted = true)
                 historyViewModel.doEditDrinkWater(newData, selectedDate ?: Date())
             }
 
-            is DrinkAdapter.MenuAction.Edit -> {
-                CupSelectionDialog.newInstance(requireContext(), diffCallback).apply {
-                    setListener {
-                        val newData = action.data.copy(
-                            consumption = it.capacity
-                        )
-                        historyViewModel.doEditDrinkWater(newData, selectedDate ?: Date())
-                    }
-                    show()
+            is Edit -> CupSelectionDialog.newInstance(requireContext(), diffCallback).apply {
+                setListener {
+                    val newData = action.data.copy(consumption = it.capacity)
+                    historyViewModel.doEditDrinkWater(newData, selectedDate ?: Date())
                 }
+                show()
             }
         }
     }
