@@ -9,7 +9,6 @@ import id.co.minumin.data.dto.DrinkDto
 import id.co.minumin.data.dto.UserRegisterDto
 import id.co.minumin.data.preference.UserPreferenceManager
 import id.co.minumin.domain.repository.AppRepository
-import id.co.minumin.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -43,13 +42,11 @@ class HistoryViewModel @Inject constructor(
     }
 
 
-    fun doEditDrinkWater(drinkDto: DrinkDto, currentDate: Date) {
-        viewModelScope.launch {
-            with(repository) {
-                repository.doEditDrinkWater(drinkDto)
-                val list = getDrinkWater(currentDate)
-                waterConsumption.postValue(list)
-            }
+    fun doEditDrinkWater(drinkDto: DrinkDto, currentDate: Date) = viewModelScope.launch {
+        with(repository) {
+            repository.doEditDrinkWater(drinkDto)
+            val list = getDrinkWater(currentDate)
+            waterConsumption.postValue(list)
         }
     }
 
@@ -59,8 +56,6 @@ class HistoryViewModel @Inject constructor(
     }
 
     private fun getData() = viewModelScope.launch {
-        userPreferenceManager.getUserRegisterData().collect {
-            userConditionDto.postValue(it)
-        }
+        userPreferenceManager.getUserRegisterData().collect { userConditionDto.postValue(it) }
     }
 }
